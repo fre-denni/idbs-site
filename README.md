@@ -1,42 +1,17 @@
-# sv
+### Main website for the Interaction Design Basics Course
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+The Interaction Design BaSics course (IDBS) is the first studio of the first year of the bachelor of Interaction Design of Politecnico di Milano. This bachelor is hosted in the Politecnico campus of Lecco, on the shores of Lake Como.
 
-## Creating a project
+This website hosts the projects and reports of the activities done by students, to offer proof and archive of didactic learning to future students of the course and people interested in it. Also because a good little bragging doesn't hurt.
 
-If you're seeing this, you've probably already done this step. Congrats!
+The website has been designed and coded by Federico Denni.
 
-```sh
-# create a new project
-npx sv create my-app
-```
+##### To-do
 
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-npx sv@0.15.2 create --template minimal --types jsdoc --add prettier eslint --install npm idbs-site
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- [ ] Add airtable connection and API key (.env file in locale)
+- [ ] Add boilerplate code airtable.js file to access and collect data
+- [ ] Add the p5 canvas interaction. Example [here](https://codepen.io/Federico-Denni/pen/vEXPJGe)
+- [ ] Add basic code for all components
+  - [ ] style columns with css (mobile first)
+  - [ ] style footer with css (mobile first)
+  - [ ] style ... with css (mobile first)
