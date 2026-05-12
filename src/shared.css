@@ -1,15 +1,19 @@
 @font-face {
-	font-family: 'Departure Mono';
-	font-style: normal;
-	font-weight: 400;
-	src: url('/static/fonts/DepartureMono-Regular.woff2') format('woff2');
-}
-
-@font-face {
+	font-display: swap;
 	font-family: 'Instrument Sans';
 	font-style: normal;
 	font-weight: 400;
-	src: url('/static/fonts/instrument-sans-regular.woff2') format('woff2');
+	src:
+		local('Instrument Sans'),
+		url('/fonts/instrument-sans-regular.woff2') format('woff2');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Departure Mono';
+	font-style: normal;
+	font-weight: 400;
+	src: url('/fonts/DepartureMono-Regular.woff2') format('woff2');
 }
 
 html,
