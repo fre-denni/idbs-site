@@ -1,9 +1,8 @@
 <script>
-	/* eslint-disable no-unused-vars */
 	import P5 from 'p5-svelte';
 
 	//set up prop
-	let { phrase = 'IDBS' } = $props();
+	let { phrase } = $props();
 
 	//component state
 	let p5Instance = $state(null);
@@ -42,29 +41,45 @@
 		// @ts-ignore
 		payoff = Array.from({ length: cols }, () => new Array(rows).fill(false));
 
-		// Calculate text "collision" mask
-		let pg = p.createGraphics(p.width, p.height);
-		pg.pixelDensity(1);
-		pg.background(0);
-		pg.fill(255);
-		pg.textFont(fontFamily);
-		pg.textSize(payoffSize * cellSize);
-		pg.textAlign(p.CENTER, p.CENTER);
-		pg.text(phrase, p.width / 2, p.height / 2);
+		// Calculate text "collision" mask using Native Canvas instead of p5
+		const canvas = document.createElement('canvas');
+		canvas.width = p.width;
+		canvas.height = p.height;
+		const ctx = canvas.getContext('2d', { willReadFrequently: true });
 
-		pg.loadPixels();
+		// Draw the background
+		// @ts-ignore
+		ctx.fillStyle = 'black';
+		// @ts-ignore
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+		// Draw the text
+		// @ts-ignore
+		ctx.font = `${payoffSize * cellSize}px "${fontFamily}"`;
+		// @ts-ignore
+		ctx.fillStyle = 'white';
+		// @ts-ignore
+		ctx.textAlign = 'center';
+		// @ts-ignore
+		ctx.textBaseline = 'middle';
+		// @ts-ignore
+		ctx.fillText(phrase, canvas.width / 2, canvas.height / 2);
+
+		// Extract pixel data
+		// @ts-ignore
+		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		const pixels = imageData.data;
+
 		for (let i = 0; i < cols; i++) {
 			for (let j = 0; j < rows; j++) {
 				let px = p.floor(i * cellSize + cellSize / 2);
 				let py = p.floor(j * cellSize + cellSize / 2);
-				let idx = (px + py * pg.width) * 4;
-				payoff[i][j] = pg.pixels[idx] > 128;
+				// native canvas pixel array is exactly like p5 (R, G, B, A)
+				let idx = (px + py * canvas.width) * 4;
+
+				// Check the red channel (pixels[idx]) to see if it's white text
+				payoff[i][j] = pixels[idx] > 128;
 			}
-		}
-		try {
-			pg.remove();
-		} catch (e) {
-			console.warn('p5 element cleanup skipped');
 		}
 	}
 
