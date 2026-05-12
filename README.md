@@ -10,8 +10,13 @@ The website has been designed and coded by Federico Denni.
 
 - [ ] Add airtable connection and API key (.env file in locale)
 - [ ] Add boilerplate code airtable.js file to access and collect data
-- [ ] Add the p5 canvas interaction. Example [here](https://codepen.io/Federico-Denni/pen/vEXPJGe)
+  - [ ] style layout project
+- [x] Add the p5 canvas interaction. Example [here](https://codepen.io/Federico-Denni/pen/vEXPJGe)
 - [ ] Add basic code for all components
   - [ ] style columns with css (mobile first)
-  - [ ] style footer with css (mobile first)
-  - [ ] style ... with css (mobile first)
+  - [x] style footer with css (mobile first)
+  - [ ] style subcompoments with css (mobile first)
+    - [ ] project card
+    - [ ] team card
+    - [ ] iFrames
+    - [ ] Feed
