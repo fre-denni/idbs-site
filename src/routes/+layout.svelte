@@ -13,10 +13,4 @@
 
 <style>
 	@import '/src/shared.css'; /*** variables ***/
-
-	/*** Declare fonts ***/
-
-	/*** Define typography styles ***/
-
-	/*** Define color schemes ***/
 </style>

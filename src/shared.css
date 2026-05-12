@@ -1,0 +1,19 @@
+@font-face {
+	font-family: 'Departure Mono';
+	font-style: normal;
+	font-weight: 400;
+	src: url('/static/fonts/DepartureMono-Regular.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Instrument Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: url('/static/fonts/instrument-sans-regular.woff2') format('woff2');
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
