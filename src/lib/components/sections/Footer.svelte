@@ -117,7 +117,7 @@
 		font-size: 0.8125rem;
 		padding: 1.5rem 2rem;
 		border-top: 1.5px solid black;
-		font-family: 'Instrument Sans', sans-serif;
+		font-family: var(--sans);
 		color: white;
 	}
 
@@ -145,7 +145,7 @@
 	}
 
 	.logo p span {
-		font-family: 'Departure Mono', monospace;
+		font-family: var(--mono);
 	}
 
 	.infoItem {

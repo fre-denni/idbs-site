@@ -1,10 +1,14 @@
 <script>
-	//import element
+	//imports
+
+	//----Main elements
+	//import P5Canvas from '$lib/components/sections/P5Canvas.svelte';
 	import ColumnContent from '$lib/components/sections/Column-Content.svelte';
 	import Footer from '$lib/components/sections/Footer.svelte';
-	import ProjectFeed from '$lib/components/ui/ProjectFeed.svelte';
+
+	//----Content
 	import TeamCarousel from '$lib/components/ui/TeamCarousel.svelte';
-	//import P5Canvas from '$lib/components/sections/P5Canvas.svelte';
+	import ProjectFeed from '$lib/components/ui/ProjectFeed.svelte';
 </script>
 
 <!--P5Canvas phrase="IDBS" /-->
@@ -32,11 +36,13 @@
 			non facilis dolorum illum voluptas, suscipit consequuntur iure ipsum ea odit enim adipisci.
 			Officiis quas eum delectus facilis.
 		</p>
+		<h2 class="text-subtitles-semibold">Useful links</h2>
 		<p class="text-body-regular">
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Id necessitatibus sapiente, quisquam
 			non facilis dolorum illum voluptas, suscipit consequuntur iure ipsum ea odit enim adipisci.
 			Officiis quas eum delectus facilis.
 		</p>
+		<h2 class="text-subtitles-semibold">Bibliography</h2>
 		<p class="text-body-regular">
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Id necessitatibus sapiente, quisquam
 			non facilis dolorum illum voluptas, suscipit consequuntur iure ipsum ea odit enim adipisci.
@@ -45,8 +51,6 @@
 	</ColumnContent>
 </div>
 <Footer />
-
-<!---->
 
 <style>
 	.home-grid {

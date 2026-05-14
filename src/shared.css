@@ -1,11 +1,12 @@
+/* FONTS */
 @font-face {
 	font-display: swap;
-	font-family: 'Instrument Sans';
+	font-family: 'Instrument Sans VF';
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 400 600;
 	src:
 		local('Instrument Sans'),
-		url('/fonts/instrument-sans-regular.woff2') format('woff2');
+		url('/assets/font/instrument-sans.woff2') format('woff2') tech(variations);
 }
 
 @font-face {
@@ -16,9 +17,29 @@
 	src: url('/fonts/DepartureMono-Regular.woff2') format('woff2');
 }
 
+/* FALLBACKS */
+@font-face {
+	font-display: swap;
+	font-family: 'Instrument Sans FB';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Instrument Sans') url('/assets/font/instrument-sans-regular.woff2') format('woff2');
+}
+
+@font-face {
+	font-display: swap;
+	font-family: 'Instrument Sans Sb FB';
+	font-style: normal;
+	font-weight: 600;
+	src: local ('Instrument Sans') url('/assets/font/instrument-sans-smb.woff2') format('woff2');
+}
+
 :root {
-	--sans: 'Instrument Sans', system-ui, Arial, Helvetica, sans-serif;
 	--mono: 'Departure Mono';
+	--sans: 'Instrument Sans FB', system-ui, Arial, Helvetica, sans-serif;
+	@supports (font-variation-settings: normal) {
+		--sans: 'Instrument Sans VF', system-ui, Arial, Helvetica, sans-serif;
+	}
 	font: 400 12px var(--sans);
 	line-height: 1.44;
 	font-synthesis: none;
@@ -60,6 +81,16 @@ a:hover {
 	color: var(--Black, #000);
 	font-family: var(--sans);
 	font-size: 1.5rem;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 113%;
+	text-transform: uppercase;
+}
+
+.text-subtitles-semibold {
+	color: var(--Black, #000);
+	font-family: var(--sans);
+	font-size: 1.125rem;
 	font-style: normal;
 	font-weight: 600;
 	line-height: 113%;
