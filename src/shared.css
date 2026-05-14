@@ -50,12 +50,16 @@
 }
 
 html,
+body {
+	overflow-x: hidden;
+}
+
+html,
 body,
 div,
 p {
 	margin: 0;
 	padding: 0;
-	overflow-x: hidden;
 }
 
 li {
@@ -104,4 +108,13 @@ a:hover {
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
+}
+
+.text-footer-regular {
+	color: var(--Black, #000);
+	font-family: var(--sans);
+	font-size: 1rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.17813rem; /* 145% */
 }

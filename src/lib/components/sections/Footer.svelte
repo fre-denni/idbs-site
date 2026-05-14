@@ -63,7 +63,7 @@
 <svelte:window bind:innerWidth={screenWidth} bind:innerHeight={screenHeight} />
 
 <footer>
-	<div class="cell cell-logo">
+	<div class="cell cell-logo text-footer-regular">
 		<div class="logo">
 			<img src={logo} alt="Politecnico di Milano logo" />
 			<p>
@@ -74,7 +74,7 @@
 	</div>
 
 	<div class="cell cell-info">
-		<div class="infoItem">
+		<div class="infoItem text-footer-regular">
 			<span>{systemInfo}</span>
 			<span>{screenWidth} x {screenHeight}</span>
 			<span>{currentTime}</span>
@@ -82,7 +82,7 @@
 	</div>
 
 	<div class="cell cell-links">
-		<ul class="links">
+		<ul class="links text-footer-regular">
 			<li><a href="https://www.design.polimi.it/" target="_blank">School of Design</a></li>
 			<li><a href="https://www.polimi.it/" target="_blank">Politecnico di Milano</a></li>
 			<li><a href="https://www.comune.lecco.it/" target="_blank">City of Lecco</a></li>
@@ -90,7 +90,7 @@
 	</div>
 
 	<div class="cell cell-credits">
-		<p class="credits">
+		<p class="credits text-footer-regular">
 			<span>Designed by</span>
 			<a href="https://www.federicodenni.com/" target="_blank">Federico Denni</a>
 		</p>
@@ -104,21 +104,19 @@
 	footer {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 22px 16px; /* row-gap, column-gap */
+		gap: 18px 16px; /* row-gap, column-gap */
 		width: 100%;
 		box-sizing: border-box;
-		position: fixed;
+		position: sticky;
 		bottom: 0;
 		left: 0;
 		z-index: 50;
-		mix-blend-mode: difference;
 		background-color: transparent;
 
 		font-size: 0.8125rem;
 		padding: 1.5rem 2rem;
 		border-top: 1.5px solid black;
-		font-family: var(--sans);
-		color: white;
+		color: var(--color);
 	}
 
 	.cell {
@@ -129,19 +127,22 @@
 
 	.logo {
 		display: flex;
+		width: fit-content;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: 0.75rem;
+		gap: 0.625rem;
+		align-self: stretch;
 	}
 
 	.logo img {
-		width: 6.5rem;
+		height: 100%;
+		width: 8rem;
+		align-self: flex-start;
+		color: var(--color);
 	}
 
 	.logo p {
 		margin: 0;
-		font-size: 0.8125rem;
-		line-height: 1.2;
 	}
 
 	.logo p span {
@@ -152,6 +153,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
+		padding-left: 8px;
 	}
 
 	.links {
@@ -165,7 +167,7 @@
 
 	.links a,
 	.credits a {
-		color: white;
+		color: var(--color);
 	}
 
 	.credits {
@@ -176,38 +178,57 @@
 	}
 
 	/* ------------------------------- */
-	/* DESKTOP: 6 Column Strict Grid   */
+	/*              DESKTOP            */
 	/* ------------------------------- */
-	@media (min-width: 768px) {
+	@media (min-width: 800px) {
 		footer {
-			/* Creates 6 perfectly equal columns */
-			grid-template-columns: repeat(6, 1fr);
-			gap: 1rem 16px;
-			align-items: end; /* Aligns all content to the bottom of the footer */
+			grid-template-columns: repeat(12, 1fr);
+			gap: 0;
+			padding: 2rem;
+			column-gap: 16px;
+			align-items: end;
 		}
 
-		/* We assign the 4 cells across the 6 columns (2 + 2 + 1 + 1 = 6) */
 		.cell-logo {
-			grid-column: span 2;
+			grid-column: span 3;
 		}
 		.cell-info {
+			grid-column: span 5;
+		}
+
+		.infoItem {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: flex-start;
+		}
+
+		.infoItem span {
 			grid-column: span 2;
 		}
+
 		.cell-links {
-			grid-column: span 1;
+			grid-column: span 2;
 		}
 
 		.cell-credits {
 			flex-direction: row;
-			justify-content: flex-end;
+			justify-content: flex-start;
+			grid-column: span 1;
 			gap: 0.3rem;
 		}
 
 		/* Optional: Make the logo and text sit side-by-side on desktop */
 		.logo {
 			flex-direction: row;
-			align-items: flex-end;
+			align-items: flex-start;
 			gap: 1.5rem;
+		}
+	}
+
+	@media (max-width: 1024px) {
+		.infoItem {
+			flex-direction: column;
+			grid-column: span 5;
 		}
 	}
 </style>

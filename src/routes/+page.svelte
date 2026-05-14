@@ -50,7 +50,7 @@
 		</p>
 	</ColumnContent>
 </div>
-<Footer />
+<Footer --color="black" />
 
 <style>
 	.home-grid {

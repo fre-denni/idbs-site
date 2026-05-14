@@ -55,7 +55,8 @@
 <style>
 	.content {
 		display: flex;
-		padding: 0 1rem 1.25rem 1rem;
+		padding: 0.75rem 1rem 1.25rem 1rem;
+		width: 100%;
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 1.5rem;
@@ -127,7 +128,6 @@
 
 		.body :global(p) {
 			width: 100%;
-			max-width: 31.25rem;
 			text-wrap: wrap;
 		}
 	}
