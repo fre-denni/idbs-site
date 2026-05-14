@@ -12,6 +12,7 @@
 </script>
 
 <!--P5Canvas phrase="IDBS" /-->
+<!--Footer --color="white" /-->
 <div class="home-grid">
 	<ColumnContent --layout="1 / span 1" title="Course Presentation" open>
 		<p class="text-body-regular">
@@ -56,6 +57,7 @@
 	.home-grid {
 		display: inline-grid;
 		align-self: stretch;
+		width: 100%;
 		grid-template-rows: repeat(3, fit-content(100%));
 		grid-template-columns: repeat(1, minmax(0, 1fr));
 		padding-top: 1.75rem;

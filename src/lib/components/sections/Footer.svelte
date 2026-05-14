@@ -99,22 +99,24 @@
 
 <style>
 	/* ------------------------------- */
-	/* BASE / MOBILE: 2 columns x 2 rows */
+	/* BASE / MOBILE: 2 columns x 3 rows */
 	/* ------------------------------- */
 	footer {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(3, 1fr);
+		/* Usiamo le aree per disegnare la griglia: i punti indicano celle vuote */
+		grid-template-areas:
+			'. .'
+			'logo info'
+			'links credits';
 		gap: 18px 16px; /* row-gap, column-gap */
 		width: 100%;
 		box-sizing: border-box;
-		position: sticky;
-		bottom: 0;
 		left: 0;
 		z-index: 50;
 		background-color: transparent;
-
-		font-size: 0.8125rem;
-		padding: 1.5rem 2rem;
+		padding: 2rem;
 		border-top: 1.5px solid black;
 		color: var(--color);
 	}
@@ -122,7 +124,24 @@
 	.cell {
 		display: flex;
 		flex-direction: column;
-		justify-content: flex-end; /* Bottom aligns everything in the cell */
+		justify-content: flex-end;
+	}
+
+	/* Assegniamo ogni cella alla sua area specifica */
+	.cell-logo {
+		grid-area: logo;
+	}
+
+	.cell-info {
+		grid-area: info;
+	}
+
+	.cell-links {
+		grid-area: links;
+	}
+
+	.cell-credits {
+		grid-area: credits;
 	}
 
 	.logo {
@@ -153,7 +172,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.25rem;
-		padding-left: 8px;
 	}
 
 	.links {
@@ -178,57 +196,53 @@
 	}
 
 	/* ------------------------------- */
-	/*              DESKTOP            */
+	/* DESKTOP            */
 	/* ------------------------------- */
 	@media (min-width: 800px) {
 		footer {
+			grid-template-areas: none; /* Rimuoviamo le aree sul desktop */
 			grid-template-columns: repeat(12, 1fr);
+			grid-template-rows: auto;
 			gap: 0;
 			padding: 2rem;
-			column-gap: 16px;
+			column-gap: 1rem;
 			align-items: end;
 		}
 
 		.cell-logo {
+			grid-area: auto; /* Resettiamo l'area assegnata nel mobile */
 			grid-column: span 3;
 		}
+
 		.cell-info {
+			grid-area: auto;
 			grid-column: span 5;
 		}
 
 		.infoItem {
-			flex-direction: row;
-			justify-content: space-between;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
 			align-items: flex-start;
-		}
-
-		.infoItem span {
-			grid-column: span 2;
+			gap: 1rem;
 		}
 
 		.cell-links {
+			grid-area: auto;
 			grid-column: span 2;
 		}
 
 		.cell-credits {
+			grid-area: auto;
+			grid-column: span 2;
 			flex-direction: row;
 			justify-content: flex-start;
-			grid-column: span 1;
 			gap: 0.3rem;
 		}
 
-		/* Optional: Make the logo and text sit side-by-side on desktop */
 		.logo {
 			flex-direction: row;
 			align-items: flex-start;
 			gap: 1.5rem;
-		}
-	}
-
-	@media (max-width: 1024px) {
-		.infoItem {
-			flex-direction: column;
-			grid-column: span 5;
 		}
 	}
 </style>
