@@ -26,6 +26,7 @@
 		onclick={toggle}
 		aria-expanded={expanded}
 		disabled={isDesktop}
+		style="cursor: default;"
 	>
 		<h1 class="text-titles-semibold">
 			{title}
@@ -59,7 +60,7 @@
 		width: 100%;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: 1.5rem;
+		gap: clamp(0.8rem, 1rem, 1.5rem);
 		align-self: stretch;
 		box-sizing: border-box;
 	}
@@ -92,6 +93,7 @@
 		height: 2rem;
 		flex-shrink: 0;
 		transition: transform 0.25s ease;
+		cursor: pointer;
 	}
 
 	.chevron.open {
@@ -106,14 +108,15 @@
 	.body {
 		display: flex;
 		flex-direction: column;
-		gap: 1.5rem;
+		gap: clamp(0.8rem, 1rem, 1.5rem);
+
 		align-self: stretch;
 	}
 
 	@media (min-width: 768px) {
 		.content {
 			width: 100%;
-			padding: 1.25rem 3.75rem 2.8125rem 3.75rem;
+			padding: 1.25rem 2.5rem 2.8125rem 2.5rem;
 			gap: 1.5rem;
 			box-sizing: border-box;
 		}
@@ -128,7 +131,7 @@
 
 		.body :global(p) {
 			width: 100%;
-			text-wrap: wrap;
+			text-wrap: balance;
 		}
 	}
 </style>

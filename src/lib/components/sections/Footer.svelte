@@ -61,36 +61,33 @@
 </script>
 
 <svelte:window bind:innerWidth={screenWidth} bind:innerHeight={screenHeight} />
-
 <footer>
 	<div class="cell cell-logo text-footer-regular">
-		<div class="logo">
-			<img src={logo} alt="Politecnico di Milano logo" />
-			<p>
-				2026.<span>IDBS</span><br />
-				All Rights Reserved.
-			</p>
-		</div>
+		<img src={logo} alt="Politecnico di Milano logo" class="logo-img" />
+		<p class="logo-text">
+			2026.<span>IDBS</span><br />
+			All Rights Reserved.
+		</p>
 	</div>
 
-	<div class="cell cell-info">
-		<div class="infoItem text-footer-regular">
+	<div class="cell cell-info text-footer-regular">
+		<div class="infoItem">
 			<span>{systemInfo}</span>
 			<span>{screenWidth} x {screenHeight}</span>
 			<span>{currentTime}</span>
 		</div>
 	</div>
 
-	<div class="cell cell-links">
-		<ul class="links text-footer-regular">
+	<div class="cell cell-links text-footer-regular">
+		<ul class="links">
 			<li><a href="https://www.design.polimi.it/" target="_blank">School of Design</a></li>
 			<li><a href="https://www.polimi.it/" target="_blank">Politecnico di Milano</a></li>
 			<li><a href="https://www.comune.lecco.it/" target="_blank">City of Lecco</a></li>
 		</ul>
 	</div>
 
-	<div class="cell cell-credits">
-		<p class="credits text-footer-regular">
+	<div class="cell cell-credits text-footer-regular">
+		<p class="credits">
 			<span>Designed by</span>
 			<a href="https://www.federicodenni.com/" target="_blank">Federico Denni</a>
 		</p>
@@ -99,73 +96,46 @@
 
 <style>
 	/* ------------------------------- */
-	/* BASE / MOBILE: 2 columns x 3 rows */
+	/* BASE / MOBILE: Griglia 2 Colonne */
 	/* ------------------------------- */
+
 	footer {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		grid-template-rows: repeat(3, 1fr);
-		/* Usiamo le aree per disegnare la griglia: i punti indicano celle vuote */
-		grid-template-areas:
-			'. .'
-			'logo info'
-			'links credits';
-		gap: 18px 16px; /* row-gap, column-gap */
+		gap: 2rem 1rem; /* row-gap, column-gap */
 		width: 100%;
 		box-sizing: border-box;
-		left: 0;
-		z-index: 50;
-		background-color: transparent;
-		padding: 2rem;
+		/* Invece di una riga vuota, usiamo un padding-top abbondante (es. 6rem o 8rem) */
+		padding: 4rem 2rem 2rem 2rem;
 		border-top: 1.5px solid black;
-		color: var(--color);
+		color: var(--color, #000);
+		background-color: transparent;
 	}
 
+	/* Impostazioni base per tutte le celle (stile Space10: ancorate in basso) */
 	.cell {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
 	}
 
-	/* Assegniamo ogni cella alla sua area specifica */
+	/* Layout interno degli elementi (Verticale di default) */
 	.cell-logo {
-		grid-area: logo;
-	}
-
-	.cell-info {
-		grid-area: info;
-	}
-
-	.cell-links {
-		grid-area: links;
-	}
-
-	.cell-credits {
-		grid-area: credits;
-	}
-
-	.logo {
-		display: flex;
-		width: fit-content;
-		flex-direction: column;
-		align-items: flex-start;
 		gap: 0.625rem;
-		align-self: stretch;
 	}
 
-	.logo img {
-		height: 100%;
+	.logo-img {
+		height: auto;
 		width: 8rem;
-		align-self: flex-start;
-		color: var(--color);
+		color: var(--color, #000);
 	}
 
-	.logo p {
+	.logo-text {
 		margin: 0;
 	}
 
-	.logo p span {
-		font-family: var(--mono);
+	.logo-text span {
+		font-family: var(--mono, monospace);
 	}
 
 	.infoItem {
@@ -183,11 +153,6 @@
 		list-style: none;
 	}
 
-	.links a,
-	.credits a {
-		color: var(--color);
-	}
-
 	.credits {
 		display: flex;
 		flex-direction: column;
@@ -195,30 +160,61 @@
 		margin: 0;
 	}
 
+	.links a,
+	.credits a {
+		color: inherit;
+		text-decoration: none; /* Aggiungi hover states se necessario */
+	}
+
 	/* ------------------------------- */
-	/* DESKTOP            */
+	/* TABLET: Stadio Intermedio (12 Colonne) */
 	/* ------------------------------- */
-	@media (min-width: 800px) {
+	@media (min-width: 768px) {
 		footer {
-			grid-template-areas: none; /* Rimuoviamo le aree sul desktop */
 			grid-template-columns: repeat(12, 1fr);
-			grid-template-rows: auto;
-			gap: 0;
-			padding: 2rem;
 			column-gap: 1rem;
 			align-items: end;
+			/* Resettiamo il padding per avere uno spazio uniforme */
+			height: 100%;
+			padding: 1rem 2rem;
 		}
 
 		.cell-logo {
-			grid-area: auto; /* Resettiamo l'area assegnata nel mobile */
+			grid-column: span 4;
+		}
+		.cell-info {
+			grid-column: span 4;
+		}
+		.cell-links {
+			grid-column: span 2;
+		}
+		.cell-credits {
+			grid-column: span 2;
+		}
+	}
+
+	/* ------------------------------- */
+	/* DESKTOP: Layout Esteso */
+	/* ------------------------------- */
+	@media (min-width: 1024px) {
+		footer {
+			padding: 3rem 1.5rem 1rem;
+		}
+		/* Ribilanciamo gli spazi per schermi larghi */
+		.cell-logo {
 			grid-column: span 3;
 		}
-
 		.cell-info {
-			grid-area: auto;
 			grid-column: span 5;
 		}
 
+		.cell-logo {
+			flex-direction: row;
+			align-items: flex-end;
+			gap: 1.5rem;
+		}
+
+		/* Le info passano in orizzontale */
 		.infoItem {
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);
@@ -226,23 +222,11 @@
 			gap: 1rem;
 		}
 
-		.cell-links {
-			grid-area: auto;
-			grid-column: span 2;
-		}
-
-		.cell-credits {
-			grid-area: auto;
-			grid-column: span 2;
+		/* I credits vanno su una riga sola */
+		.credits {
 			flex-direction: row;
-			justify-content: flex-start;
+			flex-wrap: wrap;
 			gap: 0.3rem;
-		}
-
-		.logo {
-			flex-direction: row;
-			align-items: flex-start;
-			gap: 1.5rem;
 		}
 	}
 </style>

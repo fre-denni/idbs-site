@@ -29,6 +29,10 @@
 			border-right: 1.5px solid var(--Black, #000);
 			grid-row: 1 / span 1;
 			grid-column: var(--layout);
+
+			/* Aggiornamenti per lo scroll interno */
+			height: 100%;
+			overflow-y: auto; /* 'auto' fa comparire la barra di scorrimento SOLO se necessaria, 'scroll' la mostra sempre */
 		}
 	}
 </style>

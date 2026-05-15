@@ -6,7 +6,7 @@
 	font-weight: 400 600;
 	src:
 		local('Instrument Sans'),
-		url('/assets/font/instrument-sans.woff2') format('woff2') tech(variations);
+		url('/fonts/instrument-sans.woff2') format('woff2') tech(variations);
 }
 
 @font-face {
@@ -23,7 +23,7 @@
 	font-family: 'Instrument Sans FB';
 	font-style: normal;
 	font-weight: 400;
-	src: local('Instrument Sans') url('/assets/font/instrument-sans-regular.woff2') format('woff2');
+	src: local('Instrument Sans') url('/fonts/instrument-sans-regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -31,7 +31,7 @@
 	font-family: 'Instrument Sans Sb FB';
 	font-style: normal;
 	font-weight: 600;
-	src: local ('Instrument Sans') url('/assets/font/instrument-sans-smb.woff2') format('woff2');
+	src: local ('Instrument Sans') url('/fonts/instrument-sans-smb.woff2') format('woff2');
 }
 
 :root {
@@ -40,7 +40,7 @@
 	@supports (font-variation-settings: normal) {
 		--sans: 'Instrument Sans VF', system-ui, Arial, Helvetica, sans-serif;
 	}
-	font: 400 14px var(--sans);
+	font: 400 16px var(--sans);
 	line-height: 1.44;
 	font-synthesis: none;
 	font-variant-numeric: tabular-nums;
@@ -51,6 +51,7 @@
 
 html,
 body {
+	box-sizing: border-box;
 	overflow-x: hidden;
 }
 
@@ -60,6 +61,11 @@ div,
 p {
 	margin: 0;
 	padding: 0;
+}
+
+p {
+	max-width: 500px;
+	text-wrap: balance;
 }
 
 li {
@@ -84,7 +90,7 @@ a:hover {
 .text-titles-semibold {
 	color: var(--Black, #000);
 	font-family: var(--sans);
-	font-size: 1.5rem;
+	font-size: clamp(0.938rem, 0.8943rem + 0.3977vi, 1.2125rem);
 	font-style: normal;
 	font-weight: 600;
 	line-height: 113%;
@@ -94,8 +100,9 @@ a:hover {
 .text-subtitles-semibold {
 	color: var(--Black, #000);
 	font-family: var(--sans);
-	font-size: 1.125rem;
 	font-style: normal;
+	/* font-size: clamp(0.8rem, 0.9rem + 0.35vi, 1.19rem); */
+	font-size: clamp(0.8rem, 0.7rem + 0.3vi, 0.9rem);
 	font-weight: 600;
 	line-height: 113%;
 	text-transform: uppercase;
@@ -104,7 +111,7 @@ a:hover {
 .text-body-regular {
 	color: var(--Black, #000);
 	font-family: var(--sans);
-	font-size: 1.125rem;
+	font-size: clamp(0.8rem, 0.7rem + 0.3vi, 0.9rem);
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
@@ -113,7 +120,7 @@ a:hover {
 .text-footer-regular {
 	color: var(--Black, #000);
 	font-family: var(--sans);
-	font-size: 1rem;
+	font-size: clamp(0.8rem, 0.7rem + 0.3vi, 0.9rem);
 	font-style: normal;
 	font-weight: 400;
 	line-height: 113%;
