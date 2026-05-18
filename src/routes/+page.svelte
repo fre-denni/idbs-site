@@ -1,14 +1,51 @@
 <script>
 	//imports
-
 	//----Main elements
 	//import P5Canvas from '$lib/components/sections/P5Canvas.svelte';
-	import ColumnContent from '$lib/components/sections/Column-Content.svelte';
+	import ColumnContent from '$lib/components/sections/ColumnContent.svelte';
 	import Footer from '$lib/components/sections/Footer.svelte';
 
 	//----Content
 	import TeamCarousel from '$lib/components/ui/TeamCarousel.svelte';
 	import ProjectFeed from '$lib/components/ui/ProjectFeed.svelte';
+	import TextSlot from '$lib/components/atoms/TextSlot.svelte';
+
+	// FIX 1: Point to the correct filenames
+	import mauro from '$lib/assets/photos/mauro.png';
+	import paolo from '$lib/assets/photos/paolo.png';
+	import fede from '$lib/assets/photos/fede.png';
+	import cecilia from '$lib/assets/photos/cecilia.png';
+
+	//--- team
+	const professors = [
+		{
+			image: mauro,
+			name: 'Mauro Ceconello',
+			linkedin: 'https://www.linkedin.com/in/mauro-ceconello/',
+			mail: 'mauro.ceconello@polimi.it'
+		},
+		{
+			image: paolo,
+			name: 'Paolo Perego',
+			linkedin: 'https://www.linkedin.com/in/paolo-perego-538b1a15/',
+			mail: 'paolo.perego@polimi.it'
+		}
+	];
+
+	const tas = [
+		{
+			image: fede,
+			name: 'Federico Denni',
+			linkedin: 'https://www.linkedin.com/in/federico-denni/',
+			mail: 'federico.denni@polimi.it'
+		},
+		{
+			image: cecilia,
+			name: 'Cecilia Ferrentino',
+			linkedin: 'https://www.linkedin.com/in/cecilia-ferrentino-398147341/',
+			mail: 'cecilia.ferrentino@mail.polimi.it'
+		}
+	];
 </script>
 
 <!--P5Canvas phrase="IDBS" /-->
@@ -16,40 +53,53 @@
 <div class="page-wrapper">
 	<div class="home-grid">
 		<ColumnContent --layout="1 / span 1" title="Course Presentation" open>
-			<p class="text-body-regular">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Id necessitatibus sapiente,
-				quisquam non facilis dolorum illum voluptas, suscipit consequuntur iure ipsum ea odit enim
-				adipisci. Officiis quas eum delectus facilis.
-			</p>
-			<TeamCarousel />
+			<TextSlot>
+				<p class="text-body-regular">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Id necessitatibus sapiente,
+					quisquam non facilis dolorum illum voluptas, suscipit consequuntur iure ipsum ea odit enim
+					adipisci. Officiis quas eum delectus facilis.
+				</p>
+			</TextSlot>
+			<TeamCarousel {professors} {tas} variant="desktop" />
 		</ColumnContent>
+
 		<ColumnContent --layout="2 / span 1" title="Student's Projects">
-			<p class="text-body-regular">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Id necessitatibus sapiente,
-				quisquam non facilis dolorum illum voluptas, suscipit consequuntur iure ipsum ea odit enim
-				adipisci. Officiis quas eum delectus facilis.
-			</p>
+			<TextSlot>
+				<p class="text-body-regular">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Id necessitatibus sapiente,
+					quisquam non facilis dolorum illum voluptas, suscipit consequuntur iure ipsum ea odit enim
+					adipisci. Officiis quas eum delectus facilis.
+				</p>
+			</TextSlot>
 			<ProjectFeed />
 		</ColumnContent>
 
 		<ColumnContent --layout="3 / span 1" title="Course Materials & Tools">
-			<p class="text-body-regular">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Id necessitatibus sapiente,
-				quisquam non facilis dolorum illum voluptas, suscipit consequuntur iure ipsum ea odit enim
-				adipisci. Officiis quas eum delectus facilis.
-			</p>
-			<h2 class="text-subtitles-semibold">Useful links</h2>
-			<p class="text-body-regular">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Id necessitatibus sapiente,
-				quisquam non facilis dolorum illum voluptas, suscipit consequuntur iure ipsum ea odit enim
-				adipisci. Officiis quas eum delectus facilis.
-			</p>
-			<h2 class="text-subtitles-semibold">Bibliography</h2>
-			<p class="text-body-regular">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Id necessitatibus sapiente,
-				quisquam non facilis dolorum illum voluptas, suscipit consequuntur iure ipsum ea odit enim
-				adipisci. Officiis quas eum delectus facilis.
-			</p>
+			<TextSlot>
+				<p class="text-body-regular">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Id necessitatibus sapiente,
+					quisquam non facilis dolorum illum voluptas, suscipit consequuntur iure ipsum ea odit enim
+					adipisci. Officiis quas eum delectus facilis.
+				</p>
+			</TextSlot>
+			<TextSlot title="Useful Links">
+				<ul class="links">
+					<li>
+						<a href="https://idbs-cards.vercel.app/" target="_blank" rel="noopener noreferrer"
+							>Cards Tool</a
+						>
+					</li>
+					<li><a href="http://" target="_blank" rel="noopener noreferrer">Miro Boards</a></li>
+					<li><a href="http://" target="_blank" rel="noopener noreferrer">Lesson's slides</a></li>
+				</ul>
+			</TextSlot>
+			<TextSlot title="Bibliography">
+				<p class="text-body-regular">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Id necessitatibus sapiente,
+					quisquam non facilis dolorum illum voluptas, suscipit consequuntur iure ipsum ea odit enim
+					adipisci. Officiis quas eum delectus facilis.
+				</p>
+			</TextSlot>
 		</ColumnContent>
 	</div>
 	<div class="footer-wrapper">

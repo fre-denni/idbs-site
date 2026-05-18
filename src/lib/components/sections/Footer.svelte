@@ -198,11 +198,12 @@
 	/* ------------------------------- */
 	@media (min-width: 1024px) {
 		footer {
-			padding: 3rem 1.5rem 1rem;
+			padding: 1.5rem 1.5rem 1.5rem;
 		}
 		/* Ribilanciamo gli spazi per schermi larghi */
 		.cell-logo {
 			grid-column: span 3;
+			justify-content: flex-start;
 		}
 		.cell-info {
 			grid-column: span 5;
@@ -224,7 +225,7 @@
 
 		/* I credits vanno su una riga sola */
 		.credits {
-			flex-direction: row;
+			flex-direction: column;
 			flex-wrap: wrap;
 			gap: 0.3rem;
 		}

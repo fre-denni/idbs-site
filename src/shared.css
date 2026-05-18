@@ -40,7 +40,7 @@
 	@supports (font-variation-settings: normal) {
 		--sans: 'Instrument Sans VF', system-ui, Arial, Helvetica, sans-serif;
 	}
-	font: 400 16px var(--sans);
+	font: 400 14px var(--sans);
 	line-height: 1.44;
 	font-synthesis: none;
 	font-variant-numeric: tabular-nums;
