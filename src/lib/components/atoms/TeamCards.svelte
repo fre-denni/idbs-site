@@ -62,7 +62,6 @@
 	}
 
 	.name {
-		font-family: 'Instrument Sans', sans-serif;
 		font-weight: 500;
 		font-size: 12px;
 		color: #000;
@@ -88,10 +87,8 @@
 	.link {
 		font-family: 'Instrument Sans', sans-serif;
 		font-weight: 400;
-		font-size: 12px;
 		color: #000;
 		line-height: 10.404px;
-		text-decoration: none;
 		padding-bottom: 0.464px;
 		font-variation-settings: 'wdth' 100;
 		display: flex;
