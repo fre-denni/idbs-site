@@ -160,12 +160,6 @@
 		margin: 0;
 	}
 
-	.links a,
-	.credits a {
-		color: inherit;
-		text-decoration: none; /* Aggiungi hover states se necessario */
-	}
-
 	/* ------------------------------- */
 	/* TABLET: Stadio Intermedio (12 Colonne) */
 	/* ------------------------------- */
