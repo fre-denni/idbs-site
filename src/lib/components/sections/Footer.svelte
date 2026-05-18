@@ -108,7 +108,7 @@
 		/* Invece di una riga vuota, usiamo un padding-top abbondante (es. 6rem o 8rem) */
 		padding: 4rem 2rem 2rem 2rem;
 		border-top: 1.5px solid black;
-		color: var(--color, #000);
+		color: var(--color);
 		background-color: transparent;
 	}
 
