@@ -121,13 +121,17 @@
 				<TextSlot title="Useful Links">
 					<ul class="links">
 						<li>
-							<a href="https://idbs-cards.vercel.app/" target="_blank" rel="noopener noreferrer"
-								>Cards Tool</a
-							>
+							<a href="https://idbs-cards.vercel.app/" target="_blank" rel="noopener noreferrer">
+								&rarr; Cards Tool
+							</a>
 						</li>
-						<li><a href="http://" target="_blank" rel="noopener noreferrer">Miro Boards</a></li>
 						<li>
-							<a href="http://" target="_blank" rel="noopener noreferrer">Lesson's slides</a>
+							<a href="http://" target="_blank" rel="noopener noreferrer"> &rarr; Miro Boards</a>
+						</li>
+						<li>
+							<a href="http://" target="_blank" rel="noopener noreferrer">
+								&rarr; Lesson's slides</a
+							>
 						</li>
 					</ul>
 				</TextSlot>
