@@ -12,12 +12,16 @@
 <style>
 	.content {
 		display: flex;
-		padding: 1rem 0 1.25rem 0;
+		padding: 0;
+		margin-bottom: var(--space-s-m);
 		width: 100%;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: clamp(0.8rem, 1rem, 1.5rem);
+		gap: var(--space-s-m);
 		align-self: stretch;
 		box-sizing: border-box;
+	}
+	.content h2 {
+		margin: 0;
 	}
 </style>

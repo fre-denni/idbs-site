@@ -3,7 +3,7 @@
 </script>
 
 <button class="dd">
-	<span class="label">{label}</span>
+	<span class="label text-body-regular">{label}</span>
 	<svg class="chev" viewBox="0 0 9.6 5.6" fill="none" aria-hidden="true">
 		<path
 			d="M0.8 0.8L4.8 4.8L8.8 0.8"
@@ -20,23 +20,22 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		gap: 5px;
-		height: 44px;
-		padding: 0 8px;
+		gap: var(--space-4xs-3xs);
+		height: 100%;
+		padding: 0 var(--space-2xs-xs);
 		border: 0;
 		background: transparent;
-		border-radius: 100px;
 		cursor: pointer;
-		font-family: 'Instrument Sans', sans-serif;
-		font-weight: 500;
-		font-size: 18px;
-		line-height: 14px;
-		color: #000;
-		font-variation-settings: 'wdth' 100;
+		font-size: var(--font-size-titles);
+		color: var(--black, #000);
 	}
 	.chev {
-		width: 16px;
-		height: 16px;
+		width: var(--space-2xs-xs);
+		height: auto;
 		flex-shrink: 0;
+	}
+	.label {
+		width: 100%;
+		white-space: nowrap;
 	}
 </style>

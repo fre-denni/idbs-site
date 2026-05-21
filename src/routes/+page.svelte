@@ -186,7 +186,7 @@
 	}
 
 	.content-layer {
-		background-color: var(--White, #ffffff);
+		background-color: var(--bg, #ffffff);
 		display: flex;
 		flex-direction: column;
 		position: relative;
@@ -198,15 +198,15 @@
 	/* ------------------------------- */
 	.black-strip {
 		width: 100%;
-		height: 1.5rem;
-		background-color: var(--Black, #000);
+		height: var(--space-s-m);
+		background-color: var(--black, #000);
 		border: none;
 		cursor: pointer;
 		flex-shrink: 0;
 		transition: background-color 0.3s ease;
 	}
 	.black-strip:hover {
-		background-color: #222;
+		background-color: var(--black, #000);
 	}
 
 	/* ------------------------------- */
@@ -216,8 +216,8 @@
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		padding-top: 1.75rem;
-		flex: 1; /* Prende tutto lo spazio RIMANENTE sotto la striscia nera */
+		padding-top: var(--space-m-l);
+		flex: 1;
 		min-height: 0;
 		overflow-y: auto;
 	}

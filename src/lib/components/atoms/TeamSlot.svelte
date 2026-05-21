@@ -5,7 +5,7 @@
 </script>
 
 <div class="slot" class:no-scroll={!scrollable}>
-	<p class="slot-title">
+	<p class="slot-title text-body-regular">
 		{title}{scrollable ? ' (Scroll →)' : ''}
 	</p>
 	<div
@@ -34,16 +34,9 @@
 	}
 
 	.slot-title {
-		font-family: 'Instrument Sans', sans-serif;
-		font-weight: 400;
-		font-size: 18px;
-		color: #000;
-		line-height: normal;
-		height: 45px;
 		min-width: 100%;
 		width: min-content;
-		font-variation-settings: 'wdth' 100;
-		margin: 0;
+		margin: 0 0 var(--space-2xs-xs) 0;
 		position: relative;
 		flex-shrink: 0;
 	}
@@ -51,10 +44,9 @@
 	.carousel {
 		display: inline-grid;
 		grid-auto-rows: fit-content(100%);
-		column-gap: 24px;
+		column-gap: var(--space-xs-s);
 		position: relative;
 		flex-shrink: 0;
-		overflow: clip;
 	}
 
 	.carousel.scrollable {

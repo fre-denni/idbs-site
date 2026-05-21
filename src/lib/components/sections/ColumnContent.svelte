@@ -16,15 +16,15 @@
 		align-items: center;
 		align-self: stretch;
 		justify-self: stretch;
-		border-bottom: 1.5px solid var(--Black, #000);
+		border-bottom: 1.5px solid var(--black, #000);
 		border-right: none;
 		grid-row: var(--layout);
 		grid-column: 1 / span 1;
 	}
 
-	@media (min-width: 768px) {
+	@media (min-width: 860px) {
 		.column {
-			padding-top: 0.75rem;
+			padding-top: var(--space-2xs-xs);
 			border-bottom: none;
 			border-right: 1.5px solid var(--Black, #000);
 			grid-row: 1 / span 1;
@@ -32,7 +32,7 @@
 
 			/* Aggiornamenti per lo scroll interno */
 			height: 100%;
-			overflow-y: auto; /* 'auto' fa comparire la barra di scorrimento SOLO se necessaria, 'scroll' la mostra sempre */
+			overflow-y: auto;
 		}
 	}
 </style>

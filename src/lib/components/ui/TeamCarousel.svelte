@@ -15,7 +15,7 @@
 
 	<div class="team">
 		<TeamSlot title="Professors" members={professors} scrollable={variant === 'mobile'} />
-		<TeamSlot title="Teaching Assistant" members={tas} scrollable={variant === 'mobile'} />
+		<TeamSlot title="Teaching Assistants" members={tas} scrollable={variant === 'mobile'} />
 	</div>
 </div>
 
@@ -24,27 +24,24 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: 24px;
-		padding: 20px 0 30px 0;
+		gap: var(--space-s-m);
+		padding: 0;
 		position: relative;
 		width: 100%;
-		/* IMPORTANT: Keep this as max-content so your UI doesn't collapse to 0px */
 		height: max-content;
 	}
 
 	.carousel-root.mobile {
-		padding-left: 16px;
-		padding-right: 16px;
+		padding-left: var(--space-xs-s);
+		padding-right: var(--space-xs-s);
 	}
 
 	.header {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		height: 45px;
-		color: #000;
+		align-items: flex-start;
 		text-transform: uppercase;
-		font-variation-settings: 'wdth' 100;
 		line-height: 0;
 		position: relative;
 		flex-shrink: 0;
@@ -60,14 +57,13 @@
 
 	.header p {
 		margin: 0;
-		line-height: 74.44px;
 	}
 
 	.team {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: 32px;
+		gap: var(--space-m-l);
 		width: 100%;
 		position: relative;
 	}

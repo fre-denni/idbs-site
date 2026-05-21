@@ -7,7 +7,7 @@
 		<div class="photo">
 			<img alt={name} src={image} />
 		</div>
-		<p class="name">{name}</p>
+		<p class="name text-body-regular">{name}</p>
 		<div class="links">
 			{#if linkedin}
 				<a class="link linkedin" href={linkedin} rel="external">Linkedin</a>
@@ -25,7 +25,7 @@
 		grid-row: 1;
 		justify-self: start;
 		align-self: start;
-		flex-shrink: 0;
+		width: 100%;
 		position: relative;
 	}
 
@@ -33,43 +33,35 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: 6.623px;
+		gap: var(--space-3xs-2xs);
 		width: 100%;
 		height: 100%;
 		position: relative;
 		background-clip: padding-box;
-		border: 0 solid transparent;
 	}
 
 	.photo {
-		position: relative;
-		width: 136.325px;
-		height: 138.533px;
-		border-radius: 4.415px;
+		width: var(--profile-height);
+		height: var(--profile-height);
+		aspect-ratio: 0.8 / 1;
 		overflow: hidden;
 		flex-shrink: 0;
+		border-radius: var(--space-3xs-2xs);
+		border: 1px solid var(--img-border);
 	}
 
 	.photo img {
-		position: absolute;
-		inset: 0;
+		display: block;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		border-radius: 4.415px;
 		pointer-events: none;
-		max-width: none;
+		filter: saturate(0%);
 	}
 
 	.name {
-		font-weight: 500;
-		font-size: 12px;
-		color: #000;
-		line-height: normal;
-		height: 15.454px;
 		min-width: 100%;
 		width: min-content;
-		font-variation-settings: 'wdth' 100;
 		margin: 0;
 		position: relative;
 		flex-shrink: 0;
@@ -79,18 +71,12 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: 8px;
+		gap: var(--space-3xs-2xs);
 		position: relative;
 		flex-shrink: 0;
 	}
 
 	.link {
-		font-family: 'Instrument Sans', sans-serif;
-		font-weight: 400;
-		color: #000;
-		line-height: 10.404px;
-		padding-bottom: 0.464px;
-		font-variation-settings: 'wdth' 100;
 		display: flex;
 		align-items: center;
 		flex-shrink: 0;
@@ -102,7 +88,7 @@
 	}
 
 	.link.mail {
-		width: 24px;
+		width: fit-content;
 		flex-direction: column;
 		align-items: flex-start;
 	}

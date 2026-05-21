@@ -56,11 +56,11 @@
 <style>
 	.content {
 		display: flex;
-		padding: 1rem 1rem 1.25rem 1rem;
+		padding: var(--space-m-l) var(--space-xs-s) var(--space-m-l) var(--space-xs-s);
 		width: 100%;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: clamp(0.8rem, 1rem, 1.5rem);
+		gap: var(--space-s-m);
 		align-self: stretch;
 		box-sizing: border-box;
 	}
@@ -69,7 +69,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: 1rem;
+		gap: var(--space-xs-s);
 		width: 100%;
 		background: none;
 		border: none;
@@ -89,8 +89,8 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: 2rem;
-		height: 2rem;
+		width: var(--space-m-l);
+		height: var(--space-m-l);
 		flex-shrink: 0;
 		transition: transform 0.25s ease;
 		cursor: pointer;
@@ -101,14 +101,14 @@
 	}
 
 	.chevron svg {
-		width: 1.1rem;
+		width: var(--space-xs-s);
 		height: auto;
 	}
 
 	.body {
 		display: flex;
 		flex-direction: column;
-		gap: clamp(0.8rem, 1rem, 1.5rem);
+		gap: var(--space-s-m);
 
 		align-self: stretch;
 	}
@@ -116,14 +116,13 @@
 	@media (min-width: 768px) {
 		.content {
 			width: 100%;
-			padding: 1.25rem 2.5rem 2.8125rem 2.5rem;
-			gap: 1.5rem;
+			padding: var(--space-s-m) var(--space-l-xl) var(--space-s-m) var(--space-l-xl);
+			gap: var(--space-s-m);
 			box-sizing: border-box;
 		}
 
 		h1 {
 			display: flex;
-			height: 2.8125rem;
 			flex-direction: column;
 			justify-content: center;
 			align-self: stretch;

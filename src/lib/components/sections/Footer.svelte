@@ -102,31 +102,28 @@
 	footer {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 2rem 1rem; /* row-gap, column-gap */
+		gap: var(--space-m-l) var(--space-xs-s); /* row-gap, column-gap */
 		width: 100%;
 		box-sizing: border-box;
-		/* Invece di una riga vuota, usiamo un padding-top abbondante (es. 6rem o 8rem) */
-		padding: 4rem 2rem 2rem 2rem;
+		padding: var(--space-xl-2xl) var(--space-m-l) var(--space-m-l) var(--space-m-l);
 		border-top: 1.5px solid black;
 		color: var(--color);
 		background-color: transparent;
 	}
 
-	/* Impostazioni base per tutte le celle (stile Space10: ancorate in basso) */
 	.cell {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
 	}
 
-	/* Layout interno degli elementi (Verticale di default) */
 	.cell-logo {
-		gap: 0.625rem;
+		gap: var(--space-2xs-xs);
 	}
 
 	.logo-img {
 		height: auto;
-		width: 8rem;
+		width: var(--logo-wdt);
 		color: var(--color, #000);
 	}
 
@@ -141,13 +138,13 @@
 	.infoItem {
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
+		gap: var(--space-4xs-3xs);
 	}
 
 	.links {
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
+		gap: var(--space-4xs-3xs);
 		margin: 0;
 		padding: 0;
 		list-style: none;
@@ -156,7 +153,7 @@
 	.credits {
 		display: flex;
 		flex-direction: column;
-		gap: 0.15rem;
+		gap: var(--space-4xs-3xs);
 		margin: 0;
 	}
 
@@ -166,11 +163,11 @@
 	@media (min-width: 768px) {
 		footer {
 			grid-template-columns: repeat(12, 1fr);
-			column-gap: 1rem;
+			column-gap: var(--space-xs-s);
 			align-items: end;
 			/* Resettiamo il padding per avere uno spazio uniforme */
 			height: 100%;
-			padding: 1rem 2rem;
+			padding: var(--space-xs-s) var(--space-m-l);
 		}
 
 		.cell-logo {
@@ -192,7 +189,7 @@
 	/* ------------------------------- */
 	@media (min-width: 1024px) {
 		footer {
-			padding: 1.5rem 1.5rem 1.5rem;
+			padding: var(--space-s-m) var(--space-s-m) var(--space-s-m);
 		}
 		/* Ribilanciamo gli spazi per schermi larghi */
 		.cell-logo {
@@ -206,7 +203,7 @@
 		.cell-logo {
 			flex-direction: row;
 			align-items: flex-end;
-			gap: 1.5rem;
+			gap: var(--space-s-m);
 		}
 
 		/* Le info passano in orizzontale */
@@ -214,14 +211,14 @@
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);
 			align-items: flex-start;
-			gap: 1rem;
+			gap: var(--space-s-m);
 		}
 
 		/* I credits vanno su una riga sola */
 		.credits {
 			flex-direction: column;
 			flex-wrap: wrap;
-			gap: 0.3rem;
+			gap: var(--space-4xs-3xs);
 		}
 	}
 </style>

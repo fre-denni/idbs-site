@@ -63,6 +63,10 @@
 	--space-2xl-3xl: clamp(4rem, 3.5385rem + 2.0513vw, 6rem);
 
 	/* IMAGES */
+	/* Space 110px → 120px */
+	--profile-height: clamp(6.875rem, 6.7596rem + 0.5128vw, 7.375rem);
+	/* Space 80px → 130px */
+	--logo-wdt: clamp(5rem, 4.2788rem + 3.2051vw, 8.125rem);
 	--img-border: rgba(0, 0, 0, 0.1);
 
 	/* TYPOGRAPHY */
@@ -71,7 +75,7 @@
 	@supports (font-variation-settings: normal) {
 		--sans: 'Instrument Sans VF', system-ui, Arial, Helvetica, sans-serif;
 	}
-	font: 400 16px var(--sans);
+	font: 400 15px var(--sans);
 	/* Font sizes */
 	/* Step -1: 11.2px → 14.4px */
 	--font-size-footer: clamp(0.7rem, 0.6538rem + 0.2051vw, 0.9rem);

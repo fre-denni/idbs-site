@@ -17,7 +17,7 @@
 	.feed {
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
+		gap: var(--space-2xs-xs);
 		align-items: flex-start;
 		width: 100%;
 		padding: 0;
