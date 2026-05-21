@@ -38,7 +38,7 @@
 		box-shadow: inset 0 0 0 1px var(--img-border);
 	}
 
-	.hero img {
+	.hero :global(img) {
 		width: 100%;
 		height: 100%;
 		display: block;

@@ -51,7 +51,7 @@
 		border: 1px solid var(--img-border);
 	}
 
-	.photo img {
+	.photo :global(img) {
 		display: block;
 		width: 100%;
 		height: 100%;
