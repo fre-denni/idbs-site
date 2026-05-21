@@ -1,6 +1,10 @@
 import { getTableData } from '$lib/server/airtable';
 
-export async function load() {
+export async function load({ setHeaders }) {
+	setHeaders({
+		'cache-control': 'public, max-age=3600, s-maxage=3600'
+	});
+
 	const [cmsRaw, teamRaw, linksRaw, studentsRaw] = await Promise.all([
 		getTableData('tblaok4J3VPeMtqFC'), // cms-content
 		getTableData('tbl60Ns3LfLpX0gMo'), // team-members
@@ -8,7 +12,7 @@ export async function load() {
 		getTableData('tblPewVLUao5KUvAm') // student-content
 	]);
 
-	// 1. Parse CMS Content (assuming row 0 holds the main website text)
+	// 1. Parse CMS Content come stringhe pure
 	const cmsData = cmsRaw[0] || {};
 	const cms = {
 		// @ts-ignore
@@ -20,7 +24,6 @@ export async function load() {
 	};
 
 	// 2. Parse Team Members
-	// We use optional chaining (?.) to prevent crashes if a photo is missing
 	const professors = teamRaw
 		// @ts-ignore
 		.filter((m) => m.Role === 'Professor')
@@ -77,7 +80,7 @@ export async function load() {
 	const projects = studentsRaw.map((s) => ({
 		id: s.id,
 		// @ts-ignore
-		name: `Group N° ${s.Group || '0'}`, // Since there is no Title field, we use the Group number
+		name: `Group N° ${s.Group || '0'}`,
 		// @ts-ignore
 		description: s.Description || '',
 		// @ts-ignore
