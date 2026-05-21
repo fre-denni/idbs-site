@@ -1,7 +1,7 @@
 <script>
 	import HeaderProject from '$lib/components/ui/HeaderProject.svelte';
 	import HeroProject from '$lib/components/ui/HeroProject.svelte';
-	import ContentDiv from '$lib/components/ui/ContentDiv.svelte';
+	// import ContentDiv from '$lib/components/ui/ContentDiv.svelte';
 	import IFrameProject from '$lib/components/ui/IFrameProject.svelte';
 	import CarouselProject from '$lib/components/ui/CarouselProject.svelte';
 
@@ -14,10 +14,13 @@
 <!-- AiRTABLE Content -->
 <HeroProject />
 <!-- Description -->
-<ContentDiv />
+<!-- <ContentDiv /> -->
 <!-- Images -->
 <CarouselProject />
 <!-- Cards -->
 <IFrameProject />
 <!-- Video -->
 <IFrameProject />
+
+<style>
+</style>

@@ -1,7 +1,8 @@
 <script>
 	import Filter from '../ui/Filter.svelte';
 	import ProjectCard from '../atoms/ProjectCards.svelte';
-	import projects from '$lib/assets/project.json';
+
+	let { projects = [] } = $props();
 </script>
 
 <div class="feed">

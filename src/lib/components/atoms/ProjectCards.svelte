@@ -1,5 +1,11 @@
 <script>
 	let { project } = $props();
+
+	let preview = $derived(
+		project?.description?.length > 50
+			? project.description.slice(0, 50) + '...'
+			: project?.description || ''
+	);
 </script>
 
 <article class="card">
@@ -8,7 +14,7 @@
 	</div>
 	<div class="content">
 		<h2 class="text-subtitles-semibold title">{project.name}</h2>
-		<p class="text-body-regular">{project.description}</p>
+		<p class="text-body-regular">{preview}</p>
 		<a href="/" rel="external">Read more</a>
 	</div>
 	<div class="hr"><div class="line"></div></div>
@@ -34,7 +40,6 @@
 	.hero img {
 		width: 100%;
 		height: 100%;
-		object-fit: cover;
 		display: block;
 		pointer-events: none;
 		object-fit: cover;

@@ -1,5 +1,4 @@
 <script>
-	//imports
 	//----Main elements
 	import P5Canvas from '$lib/components/sections/P5Canvas.svelte';
 	import ColumnContent from '$lib/components/sections/ColumnContent.svelte';
@@ -9,138 +8,75 @@
 	import TeamCarousel from '$lib/components/ui/TeamCarousel.svelte';
 	import ProjectFeed from '$lib/components/ui/ProjectFeed.svelte';
 	import TextSlot from '$lib/components/atoms/TextSlot.svelte';
+	import List from '$lib/components/atoms/List.svelte';
+
+	// Svelte 5 syntax to receive server data
+	let { data } = $props();
 
 	//---- Animations
-	// Referenza al div che gestisce lo scroll
 	let scrollContainer = $state();
 
-	// Funzione per tornare al canvas in cima
 	function scrollToCanvas() {
 		if (scrollContainer) {
-			// @ts-ignore
 			scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
 		}
 	}
 
-	// Cattura lo scorrimento specifico sulla striscia nera
 	// @ts-ignore
 	function handleStripWheel(e) {
-		// deltaY < 0 significa scorrimento verso l'alto
 		if (e.deltaY < 0 && scrollContainer) {
-			e.preventDefault(); // Previene il comportamento base
+			e.preventDefault();
 			scrollToCanvas();
 		}
 	}
-
-	//---- Images
-	import mauro from '$lib/assets/photos/mauro.png';
-	import paolo from '$lib/assets/photos/paolo.png';
-	import fede from '$lib/assets/photos/fede.png';
-	import cecilia from '$lib/assets/photos/cecilia.png';
-
-	//--- team
-	const professors = [
-		{
-			image: mauro,
-			name: 'Mauro Ceconello',
-			linkedin: 'https://www.linkedin.com/in/mauro-ceconello/',
-			mail: 'mauro.ceconello@polimi.it'
-		},
-		{
-			image: paolo,
-			name: 'Paolo Perego',
-			linkedin: 'https://www.linkedin.com/in/paolo-perego-538b1a15/',
-			mail: 'paolo.perego@polimi.it'
-		}
-	];
-
-	const tas = [
-		{
-			image: fede,
-			name: 'Federico Denni',
-			linkedin: 'https://www.linkedin.com/in/federico-denni/',
-			mail: 'federico.denni@polimi.it'
-		},
-		{
-			image: cecilia,
-			name: 'Cecilia Ferrentino',
-			linkedin: 'https://www.linkedin.com/in/cecilia-ferrentino-398147341/',
-			mail: 'cecilia.ferrentino@mail.polimi.it'
-		}
-	];
 </script>
 
 <P5Canvas phrase="IDBS" />
-<!-- Il contenitore principale che gestisce lo scroll magnetico -->
 <div class="snap-wrapper" bind:this={scrollContainer}>
-	<!-- SCREEN 1: Vuoto e trasparente. Fa da "finestra" per il canvas fisso sotto -->
 	<section class="snap-screen canvas-layer"></section>
 
-	<!-- SCREEN 2: Il tuo contenuto. Scivola sopra il canvas -->
 	<section class="snap-screen content-layer">
-		<!-- La striscia nera superiore -->
 		<button
 			class="black-strip"
 			onclick={scrollToCanvas}
 			onwheel={handleStripWheel}
-			aria-label="Torna al canvas"
+			aria-label="Back to canvas"
 		>
-			<!-- Opzionale: potresti inserire una piccola icona SVG o un trattino bianco qui -->
 		</button>
 		<div class="home-grid">
-			<ColumnContent --layout="1 / span 1" title="Course Presentation" open>
+			<!-- Column 1: Course Info & Team -->
+			<ColumnContent --layout="1 / span 1" title="Course Presentation">
 				<TextSlot>
 					<p class="text-body-regular">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Id necessitatibus sapiente,
-						quisquam non facilis dolorum illum voluptas, suscipit consequuntur iure ipsum ea odit
-						enim adipisci. Officiis quas eum delectus facilis.
+						{data.cms.courseDescription}
 					</p>
 				</TextSlot>
-				<TeamCarousel {professors} {tas} variant="desktop" />
+				<TeamCarousel professors={data.professors} tas={data.tas} variant="desktop" />
 			</ColumnContent>
 
+			<!-- Column 2: Projects Feed -->
 			<ColumnContent --layout="2 / span 1" title="Student's Projects">
 				<TextSlot>
 					<p class="text-body-regular">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Id necessitatibus sapiente,
-						quisquam non facilis dolorum illum voluptas, suscipit consequuntur iure ipsum ea odit
-						enim adipisci. Officiis quas eum delectus facilis.
+						{data.cms.themeDescription}
 					</p>
 				</TextSlot>
-				<ProjectFeed />
+				<!-- Passing the projects prop here -->
+				<ProjectFeed projects={data.projects} />
 			</ColumnContent>
 
+			<!-- Column 3: Materials & Links -->
 			<ColumnContent --layout="3 / span 1" title="Course Materials & Tools">
 				<TextSlot>
 					<p class="text-body-regular">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Id necessitatibus sapiente,
-						quisquam non facilis dolorum illum voluptas, suscipit consequuntur iure ipsum ea odit
-						enim adipisci. Officiis quas eum delectus facilis.
+						{data.cms.toolsDescription}
 					</p>
 				</TextSlot>
 				<TextSlot title="Useful Links">
-					<ul class="links">
-						<li>
-							<a href="https://idbs-cards.vercel.app/" target="_blank" rel="noopener noreferrer">
-								&rarr; Cards Tool
-							</a>
-						</li>
-						<li>
-							<a href="http://" target="_blank" rel="noopener noreferrer"> &rarr; Miro Boards</a>
-						</li>
-						<li>
-							<a href="http://" target="_blank" rel="noopener noreferrer">
-								&rarr; Lesson's slides</a
-							>
-						</li>
-					</ul>
+					<List lists={data.links} />
 				</TextSlot>
 				<TextSlot title="Bibliography">
-					<p class="text-body-regular">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Id necessitatibus sapiente,
-						quisquam non facilis dolorum illum voluptas, suscipit consequuntur iure ipsum ea odit
-						enim adipisci. Officiis quas eum delectus facilis.
-					</p>
+					<List lists={data.biblio} />
 				</TextSlot>
 			</ColumnContent>
 		</div>
@@ -159,7 +95,7 @@
 	/* SCROLL SNAPPING MASTER */
 	/* ------------------------------- */
 	.snap-wrapper {
-		height: 100dvh;
+		height: 100vh;
 		width: 100vw;
 		overflow-y: auto;
 		scroll-snap-type: y mandatory;
@@ -172,7 +108,7 @@
 	}
 
 	.snap-screen {
-		height: 100dvh;
+		height: 100vh;
 		width: 100vw;
 		scroll-snap-align: start;
 		scroll-snap-stop: always;
@@ -230,7 +166,15 @@
 	/* ------------------------------- */
 	/* DESKTOP: Colonne fisse indipendenti */
 	/* ------------------------------- */
-	@media (min-width: 768px) {
+	@media (min-width: 860px) {
+		.snap-wrapper {
+			height: 100dvh;
+		}
+
+		.snap-wrapper {
+			height: 100dvh;
+		}
+
 		.home-grid {
 			display: grid;
 			padding-top: 0;
