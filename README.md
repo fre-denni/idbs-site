@@ -16,7 +16,7 @@ The website has been designed and coded by Federico Denni.
 - [ ] Sistemare bug p5canvas
   - [ ] Add cursor gif to signal going down
 - [x] Taglia testo per il feed ai primi 50 caratteri
-- [ ] Add setup per vercel
+- [x] Add setup per vercel
 
 - [x] Add the p5 canvas interaction. Example [here](https://codepen.io/Federico-Denni/pen/vEXPJGe)
 - [x] Add basic code for all components
