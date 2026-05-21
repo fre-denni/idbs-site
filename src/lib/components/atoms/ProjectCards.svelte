@@ -1,4 +1,5 @@
 <script>
+	import Image from './Image.svelte';
 	let { project } = $props();
 
 	let preview = $derived(
@@ -10,7 +11,7 @@
 
 <article class="card">
 	<div class="hero">
-		<img src={project.image} alt="heroshot of students projects" />
+		<Image src={project.image} alt="heroshot of students projects" />
 	</div>
 	<div class="content">
 		<h2 class="text-subtitles-semibold title">{project.name}</h2>

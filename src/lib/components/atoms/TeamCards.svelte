@@ -1,11 +1,12 @@
 <script>
+	import Image from './Image.svelte';
 	let { image, name, linkedin, mail } = $props();
 </script>
 
 <div class="card">
 	<div class="card-inner">
 		<div class="photo">
-			<img alt={name} src={image} />
+			<Image alt={name} src={image} />
 		</div>
 		<p class="name text-body-regular">{name}</p>
 		<div class="links">

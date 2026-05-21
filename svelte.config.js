@@ -1,16 +1,19 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-vercel';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	compilerOptions: {
-		// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
 		runes: ({ filename }) => (filename.split(/[/\\]/).includes('node_modules') ? undefined : true)
 	},
 	kit: {
-		// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
-		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
-		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
-		adapter: adapter()
+		adapter: adapter({
+			images: {
+				sizes: [320, 640, 828, 1200, 1920], // Ho aggiunto 320 per le card su mobile
+				formats: ['image/avif', 'image/webp'],
+				minimumCacheTTL: 3600, // 1 ora di cache per le immagini
+				domains: ['v5.airtableusercontent.com', 'dl.airtable.com'] // DOMINI AIRTABLE AUTORIZZATI
+			}
+		})
 	}
 };
 
