@@ -80,7 +80,7 @@ export async function load({ setHeaders }) {
 	const projects = studentsRaw.map((s) => ({
 		id: s.id,
 		// @ts-ignore
-		name: `Group N° ${s.Group || '0'}`,
+		name: `Group N° ${s.Group || '0'} - ${s.Title}`,
 		// @ts-ignore
 		description: s.Description || '',
 		// @ts-ignore

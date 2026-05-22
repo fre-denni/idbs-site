@@ -11,7 +11,7 @@
 
 <article class="card">
 	<div class="hero">
-		<Image src={project.image} alt="heroshot of students projects" />
+		<Image src={project.image} alt="heroshot of project {project.name}" />
 	</div>
 	<div class="content">
 		<h2 class="text-subtitles-semibold title">{project.name}</h2>
