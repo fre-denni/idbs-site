@@ -7,7 +7,7 @@
 		<li class="item">
 			{#if list.links === true || list.links === 'True'}
 				&rarr;
-				<a href={list.href} rel="external">
+				<a href={list.href} rel="external" target="_blank">
 					{list.content}
 				</a>
 			{:else}
