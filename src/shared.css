@@ -67,7 +67,9 @@
 	--profile-height: clamp(6.875rem, 6.7596rem + 0.5128vw, 7.375rem);
 	/* Space 80px → 130px */
 	--logo-wdt: clamp(5rem, 4.2788rem + 3.2051vw, 8.125rem);
+	/* Colors */
 	--img-border: rgba(0, 0, 0, 0.1);
+	--img-border-dark: rgba(255, 255, 255, 0.1);
 
 	/* TYPOGRAPHY */
 	--mono: 'Departure Mono';
