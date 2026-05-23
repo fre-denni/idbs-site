@@ -1,6 +1,6 @@
 <script>
 	import { onMount, onDestroy } from 'svelte';
-	import logo from '$lib/assets/logo.svg';
+	import Logo from '../atoms/Logo.svelte';
 
 	// State variables
 	let currentTime = $state('');
@@ -63,7 +63,7 @@
 <svelte:window bind:innerWidth={screenWidth} bind:innerHeight={screenHeight} />
 <footer>
 	<div class="cell cell-logo text-footer-regular">
-		<img src={logo} alt="Politecnico di Milano logo" class="logo-img" />
+		<Logo css="logo-img" />
 		<p class="logo-text">
 			2026.<span>IDBS</span><br />
 			All Rights Reserved.
@@ -106,7 +106,7 @@
 		width: 100%;
 		box-sizing: border-box;
 		padding: var(--space-xl-2xl) var(--space-m-l) var(--space-m-l) var(--space-m-l);
-		border-top: 1.5px solid black;
+		border-top: 1.5px solid var(--color);
 		color: var(--color);
 		background-color: transparent;
 	}
@@ -124,7 +124,8 @@
 	.logo-img {
 		height: auto;
 		width: var(--logo-wdt);
-		color: var(--color, #000);
+		color: var(--color);
+		fill: var(--color);
 	}
 
 	.logo-text {
