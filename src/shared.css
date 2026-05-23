@@ -138,7 +138,6 @@ a:hover {
 }
 
 .text-titles-semibold {
-	color: var(--black, #000);
 	font-family: var(--sans);
 	font-size: var(--font-size-titles);
 	font-style: normal;
@@ -147,7 +146,6 @@ a:hover {
 }
 
 .text-subtitles-semibold {
-	color: var(--black, #000);
 	font-family: var(--sans);
 	font-style: normal;
 	font-size: var(--font-size-text);
@@ -157,7 +155,6 @@ a:hover {
 }
 
 .text-body-regular {
-	color: var(--black, #000);
 	font-family: var(--sans);
 	font-size: var(--font-size-text);
 	font-style: normal;
@@ -165,7 +162,6 @@ a:hover {
 }
 
 .text-footer-regular {
-	color: var(--black, #000);
 	font-family: var(--sans);
 	font-size: var(--font-size-footer);
 	font-style: normal;
