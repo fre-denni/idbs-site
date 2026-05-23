@@ -2,52 +2,63 @@ import { getTableData } from '$lib/server/airtable';
 import { error } from '@sveltejs/kit';
 
 export async function load({ setHeaders, params }) {
-	// params.slug contiene il valore dell'URL. Es: se l'URL è /progetti/3, params.slug sarà "3"
 	setHeaders({
 		'cache-control': 'public, max-age=3600, s-maxage=3600'
 	});
-	// Facciamo una query ad Airtable chiedendo SOLO il record che corrisponde allo slug
+
+	// 1. Estraiamo il numero del gruppo dallo slug
+	// Se l'URL è /project/3-titolo-progetto, splittando per "-" il primo elemento [0] è "3"
+	const groupIdString = params.slug.split('-')[0];
+	const groupId = parseInt(groupIdString, 10);
+
+	// Se l'utente scrive manualmente un URL senza numero iniziale (es. /project/ciao),
+	// groupId sarà NaN. In quel caso blocchiamo subito tutto e diamo 404.
+	if (isNaN(groupId)) {
+		error(404, { message: 'Project URL not valid' });
+	}
+
+	// 2. Facciamo la query ad Airtable usando il numero estratto
 	const records = await getTableData('tblPewVLUao5KUvAm', {
-		// Se usi il numero del gruppo come URL, usa questa riga:
-		filterByFormula: `{Group} = ${params.slug}`,
-
-		// ATTENZIONE: Se hai aggiunto un campo di testo chiamato "Slug" su Airtable,
-		// commenta la riga sopra e decommenta questa sotto:
-		// filterByFormula: `{Slug} = '${params.slug}'`,
-
-		maxRecords: 1 // Vogliamo solo un risultato
+		// Ora cerchiamo specificamente il numero, non l'intera stringa dell'URL
+		filterByFormula: `{Group} = ${groupId}`,
+		maxRecords: 1
 	});
 
-	// Se l'array è vuoto, significa che il progetto non esiste.
-	// Lanciamo un errore 404 nativo di SvelteKit che mostrerà la pagina di errore di default
 	if (!records || records.length === 0) {
 		error(404, {
-			message: 'Progetto non trovato'
+			message: 'Project not founded'
 		});
 	}
 
-	// Estraiamo il primo (e unico) record trovato
 	const rawProject = records[0];
 
-	// Formattiamo i dati in un oggetto pulito e facile da usare nel frontend,
-	// gestendo con cura eventuali campi vuoti o allegati mancanti
+	// 3. Formattiamo i dati
 	const project = {
+		// @ts-ignore
 		group: rawProject.Group,
-		title: `Group ${rawProject.Group}`,
-		studentsName: rawProject['Student Name'] || 'Nomi non disponibili',
+		// @ts-ignore
+		title: `Group N° ${rawProject.Group || '0'} - ${rawProject.Title || ''}`,
+		// @ts-ignore
+		studentsName: rawProject['Student Name'] || 'Names not available',
+		// @ts-ignore
 		studentsEmail: rawProject['Student Email'] || '',
+		// @ts-ignore
 		description: rawProject.Description || '',
 
-		// L'immagine principale (Heroshot)
-		heroImage: rawProject.Heroshot?.[0]?.url || '',
+		// Immagine principale
+		// @ts-ignore
+		heroshot: rawProject.Heroshot?.[0]?.url || '',
 
-		// Array di immagini extra della gallery (il campo "Attachments")
+		// Gallery immagini
+		// @ts-ignore
 		gallery: rawProject.Attachments ? rawProject.Attachments.map((img) => img.url) : [],
 
-		// Link al video
+		// Link video
+		// @ts-ignore
 		videoUrl: rawProject['Project video'] || null,
 
-		// Link al PDF caricato (se esiste)
+		// Link PDF
+		// @ts-ignore
 		reportUrl: rawProject.Report?.[0]?.url || null
 	};
 
