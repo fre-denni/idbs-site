@@ -1,5 +1,8 @@
 <script>
 	import Image from './Image.svelte';
+	import { resolve } from '$app/paths';
+	import TextSlot from './TextSlot.svelte';
+
 	let { project } = $props();
 
 	let preview = $derived(
@@ -13,11 +16,10 @@
 	<div class="hero">
 		<Image src={project.image} alt="heroshot of project {project.name}" />
 	</div>
-	<div class="content">
-		<h2 class="text-subtitles-semibold title">{project.name}</h2>
+	<TextSlot title={project.name}>
 		<p class="text-body-regular">{preview}</p>
-		<a href="/" rel="external">Read more</a>
-	</div>
+		<a href={resolve(`/projects/${project.slug}`)}>Read more</a>
+	</TextSlot>
 	<div class="hr"><div class="line"></div></div>
 </article>
 
@@ -46,21 +48,6 @@
 		object-fit: cover;
 		aspect-ratio: 52/35;
 		border-radius: var(--space-3xs-2xs);
-	}
-
-	.content {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-xs-s);
-		padding: 0 0 var(--space-xs-s);
-		width: 100%;
-		color: var(--black, #000);
-		overflow: hidden;
-		word-break: break-word;
-	}
-
-	.title {
-		margin: 0;
 	}
 
 	.hr {
