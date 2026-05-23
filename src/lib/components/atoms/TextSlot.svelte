@@ -20,7 +20,10 @@
 		gap: var(--space-s-m);
 		align-self: stretch;
 		box-sizing: border-box;
+		overflow: hidden;
+		word-break: break-word;
 	}
+
 	.content h2 {
 		margin: 0;
 	}
