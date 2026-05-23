@@ -1,4 +1,16 @@
+// @ts-nocheck
 import { getTableData } from '$lib/server/airtable';
+
+function getSlugged(text) {
+	if (!text) return 'untitled';
+	return text
+		.toString()
+		.toLowerCase()
+		.trim()
+		.replace(/\s+/g, '-')
+		.replace(/[^\w\\-]+/g, '')
+		.replace(/\\-\\-+/g, '-');
+}
 
 export async function load({ setHeaders }) {
 	setHeaders({
@@ -81,6 +93,8 @@ export async function load({ setHeaders }) {
 		id: s.id,
 		// @ts-ignore
 		name: `Group N° ${s.Group || '0'} - ${s.Title}`,
+		// @ts-ignore
+		slug: `${s.Group}-${getSlugged(s.Title || '')}`,
 		// @ts-ignore
 		description: s.Description || '',
 		// @ts-ignore
