@@ -10,7 +10,7 @@
 	<div class="image">
 		<Image src={project.heroshot} alt="heroshot of project {project.title}" />
 	</div>
-	<StudentsContact></StudentsContact>
+	<StudentsContact students={project.students} />
 	<TextSlot title={project.title}>
 		<p class="text-body-regular">{project.description}</p>
 	</TextSlot>
