@@ -120,14 +120,6 @@
 	.cell-logo {
 		gap: var(--space-2xs-xs);
 	}
-
-	.logo-img {
-		height: auto;
-		width: var(--logo-wdt);
-		color: var(--color);
-		fill: var(--color);
-	}
-
 	.logo-text {
 		margin: 0;
 	}
