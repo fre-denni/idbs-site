@@ -1,26 +1,40 @@
 <script>
-	import List from './List.svelte';
-	let { students } = $props();
+	import List from '../atoms/List.svelte'; // Assicurati che il path sia corretto
+
+	// Usiamo un fallback vuoto per evitare crash se per qualche motivo
+	// il server non passa la prop students
+	let { students = { names: [], mails: [] } } = $props();
 </script>
 
 <div class="grid">
 	<div class="names">
 		<p class="text-body-regular label">Made by</p>
-		<List lists={students.names} />
+		{#if students.names.length > 0}
+			<List lists={students.names} />
+		{:else}
+			<p class="text-body-regular">No names available</p>
+		{/if}
 	</div>
+
 	<div class="contacts">
-		<p class="text-body-regular label">You can reach them at</p>
-		<List lists={students.mails} />
+		<p class="text-body-regular label">Reach them at</p>
+		{#if students.mails.length > 0}
+			<List lists={students.mails} />
+		{:else}
+			<p class="text-body-regular">No contacts available</p>
+		{/if}
 	</div>
 </div>
 
 <style>
-	/* MOBILE */
+	/* Il tuo CSS originale qui (va benissimo) */
 	.grid {
 		display: grid;
+		width: 100%;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: var(--space-2xs-xs);
 		padding-top: var(--space-3xs-2xs);
+		padding-bottom: var(--space-m-l);
 		border-top: 1px solid var(--bg, #fff);
 		color: var(--bg);
 	}
@@ -36,7 +50,6 @@
 		font-weight: 600;
 	}
 
-	/* DESKTOP */
 	@media (min-width: 768px) {
 		.grid {
 			grid-template-columns: repeat(4, minmax(0, 1fr));
