@@ -89,17 +89,23 @@ export async function load({ setHeaders }) {
 		}));
 
 	// 4. Parse Student Projects
-	const projects = studentsRaw.map((s) => ({
-		id: s.id,
-		// @ts-ignore
-		name: `Group N° ${s.Group || '0'} - ${s.Title}`,
-		// @ts-ignore
-		slug: `${s.Group}-${getSlugged(s.Title || '')}`,
-		// @ts-ignore
-		description: s.Description || '',
-		// @ts-ignore
-		image: s.Heroshot?.[0]?.thumbnails?.large?.url || s.Heroshot?.[0]?.url || ''
-	}));
+	const projects = studentsRaw
+		.map((s) => ({
+			id: s.id,
+			// Estraiamo il numero reale per poterci fare operazioni matematiche
+			// @ts-ignore
+			groupNum: parseInt(s.Group, 10) || 0,
+			// @ts-ignore
+			name: `Group N° ${s.Group || '0'} - ${s.Title}`,
+			// @ts-ignore
+			slug: `${s.Group}-${getSlugged(s.Title || '')}`,
+			// @ts-ignore
+			description: s.Description || '',
+			// @ts-ignore
+			image: s.Heroshot?.[0]?.thumbnails?.large?.url || s.Heroshot?.[0]?.url || ''
+		}))
+		// Ordiniamo l'array dal gruppo più basso al più alto
+		.sort((a, b) => a.groupNum - b.groupNum);
 
 	return {
 		cms,
