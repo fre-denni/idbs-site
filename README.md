@@ -17,7 +17,11 @@ The website has been designed and coded by Federico Denni.
 - [ ] Creare drive con i report
 - [ ] Add text "Scroll down" to canvas
   - [ ] Add cursor gif to signal going down
-- [ ]
+
+BUGS
+
+- [ ] FIX Linux misfire with footer
+- [ ] Fix scrolling on main homepage (mobile)
 
 - [x] Add airtable connection and API key (.env file in locale)
 - [x] Add boilerplate code airtable.js file to access and collect data
