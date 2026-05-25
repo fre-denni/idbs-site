@@ -100,7 +100,7 @@ export async function load({ setHeaders, params }) {
 		// @ts-ignore
 		group: rawProject.Group,
 		// @ts-ignore
-		title: `Group N° ${rawProject.Group || '0'} - ${extractString(rawProject.Title)}`,
+		title: extractString(rawProject.Title),
 		// @ts-ignore
 		description: extractString(rawProject.Description),
 		// @ts-ignore
