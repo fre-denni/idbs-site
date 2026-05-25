@@ -37,7 +37,7 @@
 :root {
 	/* COLORS */
 	--bg: #fff;
-	--black: #000;
+	--black: #0f0f0f;
 
 	background: var(--bg);
 	color: var(--black);
