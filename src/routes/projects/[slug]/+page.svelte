@@ -8,20 +8,34 @@
 	let { data } = $props();
 </script>
 
-<div class="container">
-	<div class="content">
-		<HeaderProject />
-		<HeroProject project={data.project} />
+<!-- <div
+	style="background: black; color: lime; padding: 20px; position: relative; z-index: 9999; width: 100%; font-family: monospace; overflow-x: auto;"
+>
+	<h3>DEBUG DATI SERVER:</h3>
+	<pre>{JSON.stringify(data, null, 2)}</pre>
+</div> -->
 
-		<CarouselProject title="Project pictures" images={data.project.gallery} />
+{#if data?.project}
+	<div class="container">
+		<div class="content">
+			<HeaderProject />
 
-		<IFrameProject />
-		<IFrameProject />
-		<IFrameProject />
+			<HeroProject project={data.project} />
+
+			<CarouselProject title="Project pictures" images={data.project.gallery} />
+
+			<IFrameProject title="Project Video" link={data.project.videoUrl} />
+			<!-- <IFrameProject title="Project Report" link={data.project.reportUrl} />
+			<IFrameProject title="Interactive Prototype" link={websiteUrl} /> -->
+		</div>
+
+		<Footer --color="var(--bg, #fff)" />
 	</div>
-
-	<Footer --color="var(--bg, #fff)" />
-</div>
+{:else}
+	<div class="container" style="justify-content: center;">
+		<h1 style="color: white;">Caricamento progetto o dati non trovati...</h1>
+	</div>
+{/if}
 
 <style>
 	.container {
@@ -29,9 +43,10 @@
 		flex-direction: column;
 		align-items: center;
 		width: 100%;
-		background-color: var(--black, #000);
 
-		/* FONDAMENTALE: impedisce lo scrolling orizzontale dell'intera pagina */
+		height: 100dvh;
+
+		background-color: var(--black, #000);
 		overflow-x: hidden;
 		overflow-y: auto;
 		box-sizing: border-box;
@@ -42,13 +57,9 @@
 		flex-direction: column;
 		align-items: flex-start;
 		gap: var(--space-s-m);
-
-		/* FONDAMENTALE: Usiamo max-width al posto di width pura per non sforare mai su mobile */
 		width: 100%;
 		max-width: clamp(24rem, 18.9231rem + 24.2308vw, 48rem);
-
-		/* Include il padding nel calcolo della larghezza */
 		box-sizing: border-box;
-		padding: var(--space-l-xl) var(--space-2xs-xs);
+		padding: var(--space-l-xl) var(--space-2xs-xs) var(--space-3xl-4xl);
 	}
 </style>
