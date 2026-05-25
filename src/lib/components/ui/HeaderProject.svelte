@@ -25,9 +25,9 @@
 		flex-wrap: wrap;
 		align-items: center;
 		align-content: center;
-		justify-content: center;
+		justify-content: flex-start;
 		gap: var(--space-xs-s);
-		padding: var(--space-xs-s) var(--space-xl-2xl) 0;
+		padding: var(--space-xs-s) 0 0;
 		text-align: center;
 		line-height: 0;
 		width: 100%;
@@ -85,7 +85,7 @@
 	/* Mobile */
 	@media (max-width: 768px) {
 		header {
-			padding: var(--space-2xs-xs) var(--space-xs-s) 0;
+			padding: var(--space-2xs-xs) 0 0;
 			white-space: nowrap;
 		}
 		.title {

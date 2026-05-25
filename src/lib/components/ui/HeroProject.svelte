@@ -7,12 +7,17 @@
 </script>
 
 <div class="heroshot">
+	<p class="text-titles-semibold">Group N°{project.group}</p>
 	<div class="image">
-		<Image src={project.heroshot} alt="heroshot of project {project.title}" />
+		<Image src={project.heroImage || project.heroshot} alt="Heroshot of project {project.title}" />
 	</div>
-	<StudentsContact students={project.students} />
+
+	{#if project.studentsInfo && (project.studentsInfo.names.length > 0 || project.studentsInfo.mails.length > 0)}
+		<StudentsContact students={project.studentsInfo} />
+	{/if}
+
 	<TextSlot title={project.title}>
-		<p class="text-body-regular">{project.description}</p>
+		<p class="text-body-regular preserve-breaks">{project.description}</p>
 	</TextSlot>
 </div>
 
@@ -35,7 +40,6 @@
 		border-radius: var(--space-3xs-2xs);
 		overflow: hidden;
 		flex-shrink: 0;
-		border-radius: var(--space-3xs-2xs);
 		border: 1px solid var(--img-border-dark);
 	}
 
@@ -45,7 +49,11 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		border-radius: var(--space-3xs-2xs);
 		pointer-events: none;
+	}
+
+	.preserve-breaks {
+		white-space: pre-line;
+		padding-bottom: var(--space-m-l);
 	}
 </style>
