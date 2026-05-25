@@ -1,10 +1,8 @@
 <script>
 	import P5 from 'p5-svelte';
 
-	//set up prop
 	let { phrase } = $props();
 
-	//component state
 	let p5Instance = $state(null);
 	let fontLoaded = $state(false);
 	let fontFamily = 'Departure Mono';
@@ -15,13 +13,15 @@
 	const dampening = 0.9;
 	const payoffSize = 5;
 
+	// Cache sicura dei colori per evitare garbage collection
+	const colorCache = Array.from({ length: 256 }, (_, i) => `rgb(${i},${i},${i})`);
+
 	$effect(() => {
 		document.fonts.load(`2rem "${fontFamily}"`).then(() => {
 			fontLoaded = true;
 		});
 	});
 
-	// calculate grid
 	$effect(() => {
 		if (p5Instance && fontLoaded) {
 			initializeGrids(p5Instance);
@@ -30,10 +30,12 @@
 
 	// @ts-ignore
 	function initializeGrids(p) {
-		cols = p.floor(p.width / cellSize);
-		rows = p.floor(p.height / cellSize);
+		// SISTEMA DI SICUREZZA: Limitiamo le celle massime.
+		// Evita che su schermi 4k il doppio ciclo for blocchi la CPU.
+		const maxCells = 250;
+		cols = Math.min(p.floor(p.width / cellSize), maxCells);
+		rows = Math.min(p.floor(p.height / cellSize), maxCells);
 
-		// Grid Initialization
 		// @ts-ignore
 		current = Array.from({ length: cols }, () => new Array(rows).fill(0));
 		// @ts-ignore
@@ -41,19 +43,16 @@
 		// @ts-ignore
 		payoff = Array.from({ length: cols }, () => new Array(rows).fill(false));
 
-		// Calculate text "collision" mask using Native Canvas instead of p5
-		const canvas = document.createElement('canvas');
-		canvas.width = p.width;
-		canvas.height = p.height;
-		const ctx = canvas.getContext('2d', { willReadFrequently: true });
+		// Canvas temporaneo piccolissimo solo per mappare la collisione
+		const collisionCanvas = document.createElement('canvas');
+		collisionCanvas.width = cols * cellSize;
+		collisionCanvas.height = rows * cellSize;
+		const ctx = collisionCanvas.getContext('2d', { willReadFrequently: true });
 
-		// Draw the background
 		// @ts-ignore
 		ctx.fillStyle = 'black';
 		// @ts-ignore
-		ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-		// Draw the text
+		ctx.fillRect(0, 0, collisionCanvas.width, collisionCanvas.height);
 		// @ts-ignore
 		ctx.font = `${payoffSize * cellSize}px "${fontFamily}"`;
 		// @ts-ignore
@@ -63,21 +62,16 @@
 		// @ts-ignore
 		ctx.textBaseline = 'middle';
 		// @ts-ignore
-		ctx.fillText(phrase, canvas.width / 2, canvas.height / 2);
+		ctx.fillText(phrase, collisionCanvas.width / 2, collisionCanvas.height / 2);
 
-		// Extract pixel data
 		// @ts-ignore
-		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-		const pixels = imageData.data;
+		const pixels = ctx.getImageData(0, 0, collisionCanvas.width, collisionCanvas.height).data;
 
 		for (let i = 0; i < cols; i++) {
 			for (let j = 0; j < rows; j++) {
 				let px = p.floor(i * cellSize + cellSize / 2);
 				let py = p.floor(j * cellSize + cellSize / 2);
-				// native canvas pixel array is exactly like p5 (R, G, B, A)
-				let idx = (px + py * canvas.width) * 4;
-
-				// Check the red channel (pixels[idx]) to see if it's white text
+				let idx = (px + py * collisionCanvas.width) * 4;
 				payoff[i][j] = pixels[idx] > 128;
 			}
 		}
@@ -87,7 +81,8 @@
 	const sketch = (p) => {
 		p.setup = () => {
 			p.createCanvas(p.windowWidth, p.windowHeight);
-			p.pixelDensity(2);
+			p.pixelDensity(1); // Manteniamo a 1 per salvare la CPU
+			p.frameRate(45); // Limitiamo leggermente il framerate per stabilità
 			setTimeout(() => {
 				p5Instance = p;
 			}, 0);
@@ -96,14 +91,21 @@
 		p.draw = () => {
 			// @ts-ignore
 			if (!payoff) return;
-			p.background(0);
 
-			// Ripple Math
+			const ctx = p.drawingContext;
+			ctx.fillStyle = 'black';
+			ctx.fillRect(0, 0, p.width, p.height);
+
+			// Math
 			// @ts-ignore
 			for (let i = 1; i < cols - 1; i++) {
 				// @ts-ignore
 				for (let j = 1; j < rows - 1; j++) {
-					if (payoff[i][j]) continue;
+					if (payoff[i][j]) {
+						// @ts-ignore
+						current[i][j] = 0;
+						continue;
+					}
 					// @ts-ignore
 					current[i][j] =
 						// @ts-ignore
@@ -113,65 +115,86 @@
 						current[i][j];
 					// @ts-ignore
 					current[i][j] *= dampening;
+					// @ts-ignore
+					if (Math.abs(current[i][j]) < 0.5) current[i][j] = 0;
 				}
 			}
 
-			// Render Grid
-			p.noStroke();
+			// Render
 			// @ts-ignore
 			for (let i = 0; i < cols; i++) {
 				// @ts-ignore
 				for (let j = 0; j < rows; j++) {
 					if (payoff[i][j]) continue;
 					// @ts-ignore
-					let val = p.constrain(current[i][j], 0, 255);
+					let val = current[i][j];
 					if (val > 2) {
-						p.fill(val);
-						p.rect(i * cellSize, j * cellSize, cellSize - 1, cellSize - 1);
+						val = val > 255 ? 255 : Math.floor(val);
+						ctx.fillStyle = colorCache[val];
+						// Rimossa la sottrazione di 1 pixel (cellSize - 1) per alleggerire il calcolo dei bordi
+						ctx.fillRect(i * cellSize, j * cellSize, cellSize, cellSize);
 					}
 				}
 			}
 
-			// Swap buffers
 			// @ts-ignore
 			[previous, current] = [current, previous];
-
-			// Draw sharp text on top
-			p.fill(255);
-			p.textFont(fontFamily);
-			p.textSize(payoffSize * cellSize);
-			p.textAlign(p.CENTER, p.CENTER);
-			p.text(phrase, p.width / 2, p.height / 2);
 		};
 
 		p.mouseDragged = () => {
 			let ci = p.floor(p.mouseX / cellSize);
 			let cj = p.floor(p.mouseY / cellSize);
 			// @ts-ignore
-			if (previous[ci] && previous[ci][cj] !== undefined) {
+			if (ci > 0 && ci < cols - 1 && cj > 0 && cj < rows - 1) {
 				// @ts-ignore
-				previous[ci][cj] = 1000;
+				if (!payoff[ci][cj]) previous[ci][cj] = 500; // Abbassata l'energia per evitare overflow visivi
 			}
 		};
 
 		p.windowResized = () => {
 			p.resizeCanvas(p.windowWidth, p.windowHeight);
-			initializeGrids(p);
+			if (p5Instance && fontLoaded) initializeGrids(p);
 		};
 	};
 </script>
 
 {#if fontLoaded}
-	<div class="p5canvas">
-		<P5 {sketch} />
+	<div class="wrapper">
+		<div class="p5canvas">
+			<P5 {sketch} />
+		</div>
+
+		<div
+			class="dom-text"
+			style="font-family: '{fontFamily}'; font-size: {payoffSize * cellSize}px;"
+		>
+			{phrase}
+		</div>
 	</div>
 {/if}
 
 <style>
-	.p5canvas {
+	.wrapper {
 		position: fixed;
 		inset: 0;
 		background: black;
 		z-index: -1;
+	}
+
+	.p5canvas {
+		position: absolute;
+		inset: 0;
+	}
+
+	.dom-text {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--bg, #fff);
+		pointer-events: none;
+		user-select: none;
+		background-color: transparent;
 	}
 </style>
