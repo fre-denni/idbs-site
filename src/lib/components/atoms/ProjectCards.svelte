@@ -68,7 +68,7 @@
 	}
 	.line {
 		width: 100%;
-		height: 1.5px;
+		height: 1px;
 		background: var(--black, #000);
 	}
 </style>

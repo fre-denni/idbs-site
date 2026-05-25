@@ -106,7 +106,7 @@
 		width: 100%;
 		box-sizing: border-box;
 		padding: var(--space-xl-2xl) var(--space-m-l) var(--space-m-l) var(--space-m-l);
-		border-top: 1.5px solid var(--color);
+		border-top: 1px solid var(--color);
 		color: var(--color);
 		background-color: transparent;
 	}

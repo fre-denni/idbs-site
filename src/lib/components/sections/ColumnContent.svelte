@@ -16,7 +16,7 @@
 		align-items: center;
 		align-self: stretch;
 		justify-self: stretch;
-		border-bottom: 1.5px solid var(--black, #000);
+		border-bottom: 1px solid var(--black, #000);
 		border-right: none;
 		grid-row: var(--layout);
 		grid-column: 1 / span 1;
