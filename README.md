@@ -8,10 +8,16 @@ The website has been designed and coded by Federico Denni.
 
 ##### To-do
 
-- [ ] Iframe carte (link speciale)
-- [ ] Iframe report (prova con pdf su airtable)
+- [x] Iframe carte (link speciale)
+- [x] Iframe report (prova con pdf su airtable)
 - [x] Sistemare bug p5canvas
+
+- [ ] Rendere iframe carte animabile e ingrandibile (modale?)
+- [ ] Sistemare testo project feed con default (Waiting for students report!)
+- [ ] Creare drive con i report
+- [ ] Add text "Scroll down" to canvas
   - [ ] Add cursor gif to signal going down
+- [ ]
 
 - [x] Add airtable connection and API key (.env file in locale)
 - [x] Add boilerplate code airtable.js file to access and collect data
