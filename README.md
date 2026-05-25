@@ -8,13 +8,16 @@ The website has been designed and coded by Federico Denni.
 
 ##### To-do
 
+- [ ] Iframe carte (link speciale)
+- [ ] Iframe report (prova con pdf su airtable)
+- [x] Sistemare bug p5canvas
+  - [ ] Add cursor gif to signal going down
+
 - [x] Add airtable connection and API key (.env file in locale)
 - [x] Add boilerplate code airtable.js file to access and collect data
-  - [ ] style layout project
+  - [x] style layout project
 
 - [x] Sistemare css della terza colonna
-- [ ] Sistemare bug p5canvas
-  - [ ] Add cursor gif to signal going down
 - [x] Taglia testo per il feed ai primi 50 caratteri
 - [x] Add setup per vercel
 
