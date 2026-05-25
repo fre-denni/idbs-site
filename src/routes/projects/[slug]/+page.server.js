@@ -108,12 +108,13 @@ export async function load({ setHeaders, params }) {
 		// @ts-ignore
 		gallery: rawProject.Attachments ? rawProject.Attachments.map((img) => img.url) : [],
 
-		// ECCO IL FIX DEL VIDEO CHE CAUSAVA IL CRASH
+		// Il video
 		// @ts-ignore
 		videoUrl: extractString(rawProject['Project Videos']) || null,
 
+		// ECCO IL FIX DEL REPORT: Ora lo estraiamo come testo puro (Link Drive)
 		// @ts-ignore
-		reportUrl: rawProject.Report?.[0]?.url || null,
+		reportUrl: extractString(rawProject.Report) || null,
 
 		// Passiamo gli array già formattati per i contatti
 		studentsInfo: {

@@ -8,13 +8,6 @@
 	let { data } = $props();
 </script>
 
-<!-- <div
-	style="background: black; color: lime; padding: 20px; position: relative; z-index: 9999; width: 100%; font-family: monospace; overflow-x: auto;"
->
-	<h3>DEBUG DATI SERVER:</h3>
-	<pre>{JSON.stringify(data, null, 2)}</pre>
-</div> -->
-
 {#if data?.project}
 	<div class="container">
 		<div class="content">
@@ -23,10 +16,12 @@
 			<HeroProject project={data.project} />
 
 			<CarouselProject title="Project pictures" images={data.project.gallery} />
-
+			<IFrameProject
+				title="Cards"
+				link="https://idbs-cards-app.vercel.app/embed.html?group={data.project.group}"
+			/>
 			<IFrameProject title="Project Video" link={data.project.videoUrl} />
-			<!-- <IFrameProject title="Project Report" link={data.project.reportUrl} />
-			<IFrameProject title="Interactive Prototype" link={websiteUrl} /> -->
+			<IFrameProject title="Project Report" link={data.project.reportUrl} />
 		</div>
 
 		<Footer --color="var(--bg, #fff)" />
@@ -60,6 +55,7 @@
 		width: 100%;
 		max-width: clamp(24rem, 18.9231rem + 24.2308vw, 48rem);
 		box-sizing: border-box;
-		padding: var(--space-l-xl) var(--space-2xs-xs) var(--space-3xl-4xl);
+		padding: var(--space-l-xl) var(--space-2xs-xs) 0 var(--space-3xl-4xl);
+		padding-bottom: 2rem;
 	}
 </style>
