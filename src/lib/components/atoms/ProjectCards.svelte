@@ -5,11 +5,11 @@
 
 	let { project } = $props();
 
-	let preview = $derived(
-		project?.description?.length > 50
-			? project.description.slice(0, 50) + '...'
-			: project?.description || ''
-	);
+	// let preview = $derived(
+	// 	project?.description?.length > 50
+	// 		? project.description.slice(0, 50) + '...'
+	// 		: project?.description || ''
+	// );
 </script>
 
 <article class="card">
@@ -17,7 +17,7 @@
 		<Image src={project.image} alt="heroshot of project {project.name}" />
 	</div>
 	<TextSlot title={project.name}>
-		<p class="text-body-regular">{preview}</p>
+		<p class="text-body-regular line-clamp">{project?.description || ''}</p>
 		<a href={resolve(`/projects/${project.slug}`)}>Read more</a>
 	</TextSlot>
 	<div class="hr"><div class="line"></div></div>
@@ -30,6 +30,15 @@
 		gap: var(--space-s-m);
 		width: 100%;
 		overflow: hidden;
+	}
+
+	.line-clamp {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2; /* For older/current browsers */
+		line-clamp: 2; /* The new standard property */
+		overflow: hidden;
+		overflow-wrap: break-word;
 	}
 
 	.hero {
