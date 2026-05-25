@@ -14,6 +14,7 @@ The website has been designed and coded by Federico Denni.
 
 - [ ] Rendere iframe carte animabile e ingrandibile (modale?)
 - [ ] Sistemare testo project feed con default (Waiting for students report!)
+- [ ] Content sito!
 - [ ] Creare drive con i report
 - [ ] Add text "Scroll down" to canvas
   - [ ] Add cursor gif to signal going down
