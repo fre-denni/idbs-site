@@ -47,10 +47,10 @@
 		}
 
 		// Attacchiamo gli eventi "dietro le quinte"
-		node.addEventListener('mousedown', mousedown);
+		node.addEventListener('mousedown', mousedown, { passive: true });
 		node.addEventListener('mouseleave', mouseleave);
 		node.addEventListener('mouseup', mouseup);
-		node.addEventListener('mousemove', mousemove);
+		node.addEventListener('mousemove', mousemove, { passive: false });
 
 		// Funzione di pulizia quando il componente viene distrutto
 		return {
@@ -147,7 +147,7 @@
 		position: relative;
 		flex: 0 0 95%;
 		max-width: 650px;
-		aspect-ratio: 4 / 3;
+		aspect-ratio: 5 / 3;
 		scroll-snap-align: center;
 		border-radius: var(--space-3xs-2xs);
 		overflow: hidden;

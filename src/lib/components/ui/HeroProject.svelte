@@ -36,7 +36,7 @@
 	.image {
 		position: relative;
 		width: 100%;
-		aspect-ratio: 648 / 420;
+		aspect-ratio: 800 / 420;
 		border-radius: var(--space-3xs-2xs);
 		overflow: hidden;
 		flex-shrink: 0;
@@ -53,7 +53,10 @@
 	}
 
 	.preserve-breaks {
-		white-space: pre-line;
+		white-space: pre;
+		text-wrap: pretty;
+		overflow-wrap: break-word;
+		hyphens: manual;
 		padding-bottom: var(--space-m-l);
 	}
 </style>
