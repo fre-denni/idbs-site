@@ -5,21 +5,29 @@
 		if (!link || typeof link !== 'string') return '';
 
 		try {
-			// 1. Trasforma link YouTube
+			// 1. YOUTUBE: Usiamo youtube-nocookie.com invece di youtube.com
 			const ytMatch = link.match(
 				/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/
 			);
-			if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}`;
+			if (ytMatch) return `https://www.youtube-nocookie.com/embed/${ytMatch[1]}`;
 
-			// 2. Trasforma link Vimeo
-			const vimeoMatch = link.match(/vimeo\.com\/(?:video\/)?(\d+)/);
-			if (vimeoMatch) return `https://player.vimeo.com/video/${vimeoMatch[1]}`;
+			// 2. FIX VIMEO: Catturiamo l'ID e l'eventuale hash segreto
+			// Cerca pattern come vimeo.com/123456789 oppure vimeo.com/123456789/abcdef1234
+			const vimeoMatch = link.match(/vimeo\.com\/(?:video\/)?(\d+)(?:\/([\w]+))?/);
+			if (vimeoMatch) {
+				const videoId = vimeoMatch[1];
+				const hash = vimeoMatch[2]; //Code "unlisted"
 
-			// 3. NUOVO: Trasforma link standard di Google Drive nel link "Preview" (compatibile con Iframe)
+				// Se c'è l'hash segreto, lo aggiungiamo all'URL dell'embed con ?h=
+				return hash
+					? `https://player.vimeo.com/video/${videoId}?h=${hash}`
+					: `https://player.vimeo.com/video/${videoId}`;
+			}
+
+			// 3. Normal Links
 			const gDriveMatch = link.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
 			if (gDriveMatch) return `https://drive.google.com/file/d/${gDriveMatch[1]}/preview`;
 
-			// Se non è nessuno dei precedenti (es. il tuo sito delle carte), lo passa così com'è
 			return link;
 		} catch (e) {
 			console.warn("Errore durante l'elaborazione del link iframe:", e);
