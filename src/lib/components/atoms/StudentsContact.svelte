@@ -27,7 +27,7 @@
 </div>
 
 <style>
-	/* Il tuo CSS originale qui (va benissimo) */
+	/* CSS */
 	.grid {
 		display: grid;
 		width: 100%;

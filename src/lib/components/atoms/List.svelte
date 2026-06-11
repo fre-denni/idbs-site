@@ -21,7 +21,7 @@
 	.list {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-xs-s);
+		gap: var(--space-4xs-3xs);
 		padding: 0;
 		height: 100%;
 		align-items: flex-start;
