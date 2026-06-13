@@ -1,10 +1,10 @@
 <script>
-	let { lists = [] } = $props();
+	let { lists = [], biblio } = $props();
 </script>
 
 <ul class="list">
 	{#each lists as list (list.id)}
-		<li class="item">
+		<li class="item" class:biblio>
 			{#if list.links === true || list.links === 'True'}
 				&rarr;
 				<a href={list.href} rel="external" target="_blank">
@@ -27,5 +27,9 @@
 		align-items: flex-start;
 		justify-content: space-between;
 		align-self: stretch;
+	}
+
+	.biblio {
+		margin-bottom: var(--space-xs-s);
 	}
 </style>

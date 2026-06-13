@@ -4,13 +4,14 @@
 	// Usiamo un fallback vuoto per evitare crash se per qualche motivo
 	// il server non passa la prop students
 	let { students = { names: [], mails: [] } } = $props();
+	let biblio = $state(false);
 </script>
 
 <div class="grid">
 	<div class="names">
 		<p class="text-body-regular label">Made by</p>
 		{#if students.names.length > 0}
-			<List lists={students.names} />
+			<List lists={students.names} {biblio} />
 		{:else}
 			<p class="text-body-regular">No names available</p>
 		{/if}
@@ -19,7 +20,7 @@
 	<div class="contacts">
 		<p class="text-body-regular label">Reach them at</p>
 		{#if students.mails.length > 0}
-			<List lists={students.mails} />
+			<List lists={students.mails} {biblio} />
 		{:else}
 			<p class="text-body-regular">No contacts available</p>
 		{/if}

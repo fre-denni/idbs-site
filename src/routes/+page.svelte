@@ -73,10 +73,10 @@
 					</p>
 				</TextSlot>
 				<TextSlot title="Useful Links">
-					<List lists={data.links} />
+					<List lists={data.links} biblio={false} />
 				</TextSlot>
 				<TextSlot title="Bibliography">
-					<List lists={data.biblio} />
+					<List lists={data.biblio} biblio={true} />
 				</TextSlot>
 			</ColumnContent>
 		</div>
