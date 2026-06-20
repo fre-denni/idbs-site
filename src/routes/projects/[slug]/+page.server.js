@@ -21,12 +21,14 @@ function extractString(field) {
 	return String(field); // Se è già testo, va bene così
 }
 
-// @ts-ignore
-export async function load({ setHeaders, params }) {
-	setHeaders({
-		'cache-control': 'public, max-age=3600, s-maxage=3600'
-	});
+export const config = {
+	isr: {
+		expiration: 3600 // Congela la pagina sui server Vercel per 1 ora (3600 secondi)
+	}
+};
 
+// @ts-ignore
+export async function load({ params }) {
 	const groupIdString = params.slug.split('-')[0];
 	const groupId = parseInt(groupIdString, 10);
 

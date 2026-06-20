@@ -12,11 +12,13 @@ function getSlugged(text) {
 		.replace(/\\-\\-+/g, '-');
 }
 
-export async function load({ setHeaders }) {
-	setHeaders({
-		'cache-control': 'public, max-age=3600, s-maxage=3600'
-	});
+export const config = {
+	isr: {
+		expiration: 3600 // Congela la pagina sui server Vercel per 1 ora (3600 secondi)
+	}
+};
 
+export async function load({ params }) {
 	const [cmsRaw, teamRaw, linksRaw, studentsRaw] = await Promise.all([
 		getTableData('tblaok4J3VPeMtqFC'), // cms-content
 		getTableData('tbl60Ns3LfLpX0gMo'), // team-members
